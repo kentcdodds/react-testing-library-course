@@ -1,0 +1,48 @@
+{
+  "name": "react-testing-library-course",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "lint": "kcd-scripts lint",
+    "precommit": "kcd-scripts precommit",
+    "validate": "kcd-scripts validate"
+  },
+  "keywords": [],
+  "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "jest": "^22.4.3",
+    "jest-dom": "^1.0.0",
+    "kcd-scripts": "^0.38.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-testing-library": "^2.4.0"
+  },
+  "babel": {
+    "presets": "kcd-scripts/babel"
+  },
+  "eslintConfig": {
+    "extends": "./node_modules/kcd-scripts/eslint.js",
+    "rules": {
+      "import/prefer-default-export": "off",
+      "jsx-a11y/label-has-for": "off",
+      "react/prop-types": "off",
+      "import/no-unassigned-import": "off"
+    }
+  },
+  "eslintIgnore": ["node_modules", "coverage"],
+  "prettier": {
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "bracketSpacing": false,
+    "jsxBracketSameLine": false
+  }
+}
