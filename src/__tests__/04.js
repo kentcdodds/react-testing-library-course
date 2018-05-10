@@ -1,3 +1,5 @@
+// using renderIntoDocument, cleanup, and fireEvent
+
 import React from 'react'
 import {renderIntoDocument, cleanup, fireEvent} from 'react-testing-library'
 import 'jest-dom/extend-expect'
@@ -33,7 +35,7 @@ test('greet renders a greeting', () => {
   )
   const usernameNode = getByLabelText('Username')
   const passwordNode = getByLabelText('Password')
-  const submitButton = getByText('submit')
+  const submitButton = getByText('Submit')
 
   const fakeUser = {username: 'alice', password: 'in wonderland'}
 

@@ -20,8 +20,8 @@ test('loads greetings on click', async () => {
   const {getByLabelText, getByText, getByTestId} = renderIntoDocument(
     <GreetingLoader />,
   )
-  const nameInput = getByLabelText('name')
-  const loadButton = getByText('load')
+  const nameInput = getByLabelText(/name/i)
+  const loadButton = getByText(/load/i)
   nameInput.value = 'Mary'
   loadButton.click()
   await wait(() => expect(getByTestId('greeting')).toHaveTextContent('Hi Mary'))

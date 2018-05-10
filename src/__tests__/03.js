@@ -1,3 +1,5 @@
+// basic form selection
+
 import React from 'react'
 import {render, Simulate} from 'react-testing-library'
 import 'jest-dom/extend-expect'
@@ -29,7 +31,7 @@ test('greet renders a greeting', () => {
   )
   const usernameNode = getByLabelText('Username')
   const passwordNode = getByLabelText('Password')
-  const submitButton = getByText('submit')
+  const submitButton = getByText('Submit')
 
   const fakeUser = {username: 'alice', password: 'in wonderland'}
 
