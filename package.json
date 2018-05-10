@@ -13,19 +13,21 @@
   "keywords": [],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
   "license": "MIT",
+  "dependencies": {
+    "dom-testing-library": "2.2.0",
+    "jest-dom": "1.0.0",
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "react-redux": "5.0.7",
+    "react-router": "4.2.0",
+    "react-router-dom": "4.2.2",
+    "react-testing-library": "3.0.2",
+    "redux": "4.0.0"
+  },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "dom-testing-library": "^2.2.0",
     "jest": "^22.4.3",
-    "jest-dom": "^1.0.0",
-    "kcd-scripts": "^0.38.0",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-redux": "^5.0.7",
-    "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-testing-library": "^3.0.2",
-    "redux": "^4.0.0"
+    "kcd-scripts": "^0.38.0"
   },
   "babel": {
     "presets": "kcd-scripts/babel"
