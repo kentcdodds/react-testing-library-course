@@ -12,7 +12,7 @@ class MyPortal extends React.Component {
   constructor(...args) {
     super(...args)
     this.portalNode = document.createElement('div')
-    this.portalNode.setAttribute("data-testid", "my-portal");
+    this.portalNode.dataset.testid = 'my-portal'
   }
   componentDidMount() {
     document.body.appendChild(this.portalNode)
