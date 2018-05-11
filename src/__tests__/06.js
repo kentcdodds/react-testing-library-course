@@ -51,12 +51,12 @@ function renderMyPortal() {
 }
 
 test('greet renders a greeting in a portal', () => {
-  const {getByText} = renderMyPortal(<MyPortal />)
+  const {getByText} = renderMyPortal()
   expect(getByText('Hello World')).toBeInTheDOM()
 })
 
 test('removes the node from the document when it unmounts', () => {
-  const {unmount, portalNode} = renderMyPortal(<MyPortal />)
+  const {unmount, portalNode} = renderMyPortal()
   expect(document.body.contains(portalNode)).toBe(true)
   unmount()
   expect(document.body.contains(portalNode)).toBe(false)
