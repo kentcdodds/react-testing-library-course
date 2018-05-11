@@ -12,7 +12,7 @@ class MyPortal extends React.Component {
   constructor(...args) {
     super(...args)
     this.portalNode = document.createElement('div')
-    this.portalNode.dataset.testid = 'my-portal'
+    this.portalNode.setAttribute("data-testid", "my-portal");
   }
   componentDidMount() {
     document.body.appendChild(this.portalNode)
@@ -51,12 +51,12 @@ function renderMyPortal() {
 }
 
 test('greet renders a greeting in a portal', () => {
-  const {getByText} = renderMyPortal(<MyPortal />)
+  const {getByText} = renderMyPortal()
   expect(getByText('Hello World')).toBeInTheDOM()
 })
 
 test('removes the node from the document when it unmounts', () => {
-  const {unmount, portalNode} = renderMyPortal(<MyPortal />)
+  const {unmount, portalNode} = renderMyPortal()
   expect(document.body.contains(portalNode)).toBe(true)
   unmount()
   expect(document.body.contains(portalNode)).toBe(false)
