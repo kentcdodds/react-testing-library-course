@@ -1,8 +1,6 @@
-// portals
-
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {renderIntoDocument, cleanup} from 'react-testing-library'
+import {renderIntoDocument, cleanup, prettyDOM} from 'react-testing-library'
 import {bindElementToQueries} from 'dom-testing-library'
 import 'jest-dom/extend-expect'
 
@@ -38,7 +36,9 @@ function Greet({greeting, subject}) {
   )
 }
 
-beforeEach(cleanup)
+afterEach(() => {
+  cleanup()
+})
 
 function renderMyPortal() {
   const renderUtils = renderIntoDocument(<MyPortal />)

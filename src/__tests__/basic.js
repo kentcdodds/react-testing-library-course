@@ -1,5 +1,3 @@
-// most basic test
-
 import React from 'react'
 import {render} from 'react-testing-library'
 

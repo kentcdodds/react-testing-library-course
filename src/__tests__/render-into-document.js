@@ -1,5 +1,3 @@
-// using renderIntoDocument, cleanup, and fireEvent
-
 import React from 'react'
 import {renderIntoDocument, cleanup, fireEvent} from 'react-testing-library'
 import 'jest-dom/extend-expect'
