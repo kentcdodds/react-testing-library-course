@@ -1,3 +1,5 @@
+// Use jest.mock to mock utilities
+
 import React from 'react'
 import {wait, cleanup, renderIntoDocument} from 'react-testing-library'
 import 'jest-dom/extend-expect'
