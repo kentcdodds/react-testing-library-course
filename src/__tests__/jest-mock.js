@@ -12,9 +12,7 @@ jest.mock('../utils', () => ({
   ),
 }))
 
-beforeEach(() => {
-  cleanup()
-})
+afterEach(cleanup)
 
 test('loads greetings on click', async () => {
   const {getByLabelText, getByText, getByTestId} = renderIntoDocument(

@@ -3,9 +3,7 @@ import {wait, cleanup, renderIntoDocument} from 'react-testing-library'
 import 'jest-dom/extend-expect'
 import {GreetingLoader} from '../greeting-loader-01'
 
-beforeEach(() => {
-  cleanup()
-})
+afterEach(cleanup)
 
 test('loads greetings on click', async () => {
   const loadGreeting = jest.fn(subject =>

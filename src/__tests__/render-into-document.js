@@ -22,7 +22,7 @@ function Login({onSubmit}) {
   )
 }
 
-beforeEach(() => {
+afterEach(() => {
   cleanup()
 })
 
