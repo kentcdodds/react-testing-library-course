@@ -1,6 +1,6 @@
+import 'jest-dom/extend-expect'
 import React from 'react'
 import {render, Simulate} from 'react-testing-library'
-import 'jest-dom/extend-expect'
 
 function Login({onSubmit}) {
   return (

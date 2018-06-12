@@ -1,10 +1,13 @@
+import 'jest-dom/extend-expect'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {renderIntoDocument, cleanup} from 'react-testing-library'
-import {bindElementToQueries} from 'dom-testing-library'
-import 'jest-dom/extend-expect'
+import {
+  renderIntoDocument,
+  cleanup,
+  getQueriesForElement,
+} from 'react-testing-library'
 
-const bodyUtils = bindElementToQueries(document.body)
+const bodyUtils = getQueriesForElement(document.body)
 
 class MyPortal extends React.Component {
   constructor(...args) {
@@ -44,7 +47,7 @@ function renderMyPortal() {
   return {
     portalNode,
     ...renderUtils,
-    ...bindElementToQueries(portalNode),
+    ...getQueriesForElement(portalNode),
   }
 }
 

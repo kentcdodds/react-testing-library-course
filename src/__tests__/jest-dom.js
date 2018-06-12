@@ -1,5 +1,5 @@
-import React from 'react'
 import 'jest-dom/extend-expect'
+import React from 'react'
 import {render} from 'react-testing-library'
 
 function Greet({greeting, subject}) {

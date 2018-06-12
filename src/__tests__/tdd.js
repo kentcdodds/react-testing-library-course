@@ -1,7 +1,6 @@
 import 'jest-dom/extend-expect'
 import React from 'react'
 import {renderIntoDocument, cleanup} from 'react-testing-library'
-
 import {Editor} from '../post-editor'
 
 afterEach(cleanup)
