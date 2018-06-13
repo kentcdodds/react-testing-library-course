@@ -25,6 +25,7 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
+    "dom-testing-library": "^2.6.0",
     "jest": "^23.1.0",
     "kcd-scripts": "^0.39.0"
   },
