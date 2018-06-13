@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Redirect} from 'react-router'
 import {savePost} from './api'
 
 class Editor extends Component {
+  static defaultProps = {savePost}
   state = {isSaving: false, error: null, redirect: false}
   handleSubmit = e => {
     e.preventDefault()
@@ -15,10 +16,13 @@ class Editor extends Component {
       authorId: this.props.user.id,
     }
     this.setState({isSaving: true})
-    savePost(newPost).then(
-      () => this.setState({isSaving: false, redirect: true}),
-      response => this.setState({isSaving: false, error: response.data.error}),
-    )
+    this.props
+      .savePost(newPost)
+      .then(
+        () => this.setState({isSaving: false, redirect: true}),
+        response =>
+          this.setState({isSaving: false, error: response.data.error}),
+      )
   }
   render() {
     if (this.state.redirect) {
