@@ -1,6 +1,7 @@
 import 'jest-dom/extend-expect'
+import 'react-testing-library/cleanup-after-each'
 import React from 'react'
-import {renderIntoDocument, cleanup, wait} from 'react-testing-library'
+import {render, wait} from 'react-testing-library'
 import {build, fake, sequence} from 'test-data-bot'
 import {Redirect as MockRedirect} from 'react-router'
 import {Editor} from '../post-editor'
@@ -10,8 +11,6 @@ jest.mock('react-router', () => {
     Redirect: jest.fn(() => null),
   }
 })
-
-afterEach(cleanup)
 
 const postBuilder = build('Post').fields({
   title: fake(f => f.lorem.words()),
@@ -29,9 +28,7 @@ const userBuilder = build('User').fields({
 
 test('renders a form with title, content, tags, and a submit button', async () => {
   const fakeUser = userBuilder()
-  const {getByLabelText, getByText} = renderIntoDocument(
-    <Editor user={fakeUser} />,
-  )
+  const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
   const fakePost = postBuilder()
   getByLabelText(/title/i).value = fakePost.title
   getByLabelText(/content/i).value = fakePost.content
