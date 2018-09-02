@@ -16,6 +16,7 @@ I'm still working on the README. But here's the order these should be given in:
 - `localized.js` - Testing localized content with react-testing-library
 - `state.js` - Test React Component state changes with react-testing-library
 - `prop-updates.js` - Test prop updates with react-testing-library
+- `a11y.js` - Test accessibility of rendered React Components with jest-axe
 - `error-boundaries.js` - Test componentDidCatch handler error boundaries with react-testing-library
 - `tdd-markup.js` - Test drive the development of a React Form with react-testing-library
 - `tdd-functionality.js` - TDD the functionality of a React Form with react-testing-library
