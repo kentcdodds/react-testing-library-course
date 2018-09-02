@@ -1,0 +1,21 @@
+{
+  "Go checkout <0>jslingui</0>! It is <1>{adjective}!</1>": {
+    "translation": "",
+    "origin": [
+      [
+        "src/hello-world.l10n.js",
+        8
+      ]
+    ]
+  },
+  "Hello world!": {
+    "translation": "",
+    "origin": [
+      [
+        "src/hello-world.l10n.js",
+        8
+      ]
+    ],
+    "obsolete": true
+  }
+}

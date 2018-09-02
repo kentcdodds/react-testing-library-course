@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "description": "Course material for testing React components using react-testing-library",
+  "engines": {
+    "node": "8",
+    "npm": "6"
+  },
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
@@ -26,6 +30,9 @@
     "redux": "^4.0.0"
   },
   "devDependencies": {
+    "@lingui/babel-preset-react": "^2.6.0",
+    "@lingui/cli": "^2.6.0",
+    "@lingui/react": "^2.6.0",
     "babel-core": "^7.0.0-bridge.0",
     "dom-testing-library": "^3.5.0",
     "jest": "^23.1.0",
@@ -36,7 +43,8 @@
   },
   "babel": {
     "presets": [
-      "kcd-scripts/babel"
+      "kcd-scripts/babel",
+      "@lingui/babel-preset-react"
     ]
   },
   "eslintConfig": {

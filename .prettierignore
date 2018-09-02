@@ -1,0 +1,9 @@
+node_modules/
+coverage/
+dist/
+build/
+out/
+.next/
+locale
+package-lock.json
+

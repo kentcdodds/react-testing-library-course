@@ -1,4 +1,6 @@
+// normally you'd put this in your `setupFiles` config
 import 'jest-dom/extend-expect'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {FavoriteNumber} from '../favorite-number'
