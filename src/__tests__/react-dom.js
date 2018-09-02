@@ -5,6 +5,6 @@ import {FavoriteNumber} from '../favorite-number'
 test('renders a number input with a label "Favorite Number"', () => {
   const div = document.createElement('div')
   ReactDOM.render(<FavoriteNumber />, div)
-  expect(div.querySelector('input').type).toEqual('number')
-  expect(div.querySelector('label').textContent).toEqual('Favorite Number')
+  expect(div.querySelector('input').type).toBe('number')
+  expect(div.querySelector('label').textContent).toBe('Favorite Number')
 })
