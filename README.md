@@ -1,11 +1,11 @@
+# react-testing-library-course
+
+_Course material for testing React components using react-testing-library_
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [react-testing-library-course](#react-testing-library-course)
-
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# react-testing-library-course
 
 I'm still working on the README. But here's the order these should be given in:
 

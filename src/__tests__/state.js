@@ -7,7 +7,6 @@ import {FavoriteNumber} from '../favorite-number'
 test('entering an invalid value shows an error message', () => {
   const {getByLabelText, getByTestId} = render(<FavoriteNumber />)
   const input = getByLabelText('Favorite Number')
-  input.value = 10
-  fireEvent.change(input, {target: input})
+  fireEvent.change(input, {target: {value: 10}})
   expect(getByTestId('error-message')).toHaveTextContent(/number.*invalid/)
 })

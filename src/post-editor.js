@@ -28,6 +28,9 @@ class Editor extends Component {
     if (this.state.redirect) {
       return <Redirect to="/" />
     }
+    if (this.state.error) {
+      return <div>{this.state.error}</div>
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
