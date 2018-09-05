@@ -1,7 +1,7 @@
 import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
 import React from 'react'
-import {render, wait} from 'react-testing-library'
+import {render, fireEvent, wait} from 'react-testing-library'
 import {build, fake, sequence} from 'test-data-bot'
 import {Redirect as MockRedirect} from 'react-router'
 import {Editor} from '../post-editor'
@@ -34,7 +34,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
   getByLabelText(/content/i).value = fakePost.content
   getByLabelText(/tags/i).value = fakePost.tags.join(', ')
   const submitButton = getByText(/submit/i)
-  submitButton.click()
+  fireEvent.click(submitButton)
   expect(submitButton).toHaveAttribute('disabled')
   await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
   expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {})
