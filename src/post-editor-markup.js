@@ -1,17 +1,17 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class Editor extends Component {
+class Editor extends React.Component {
   render() {
     return (
       <form>
         <label htmlFor="title-input">Title</label>
-        <input id="title-input" name="title" />
+        <input id="title-input" />
 
         <label htmlFor="content-input">Content</label>
-        <textarea id="content-input" name="content" />
+        <textarea id="content-input" />
 
         <label htmlFor="tags-input">Tags</label>
-        <input id="tags-input" name="tags" />
+        <input id="tags-input" />
 
         <button type="submit">Submit</button>
       </form>
