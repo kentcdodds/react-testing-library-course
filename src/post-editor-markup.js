@@ -4,13 +4,13 @@ class Editor extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <label htmlFor="title-input">Title</label>
-          <input id="title-input" placeholder="Title" name="title" />
+          <input id="title-input" name="title" />
           <label htmlFor="content-input">Content</label>
-          <textarea id="content-input" placeholder="Content" name="content" />
+          <textarea id="content-input" name="content" />
           <label htmlFor="tags-input">Tags</label>
-          <input id="tags-input" placeholder="tags" name="tags" />
+          <input id="tags-input" name="tags" />
           <button type="submit">Submit</button>
         </form>
       </div>
