@@ -10,7 +10,9 @@ test('entering an invalid value shows an error message', () => {
   )
   const input = getByLabelText(/favorite number/i)
   fireEvent.change(input, {target: {value: 10}})
-  expect(getByTestId('error-message')).toHaveTextContent(/number.*invalid/)
+  expect(getByTestId('error-message')).toHaveTextContent(
+    /the number is invalid/i,
+  )
   rerender(<FavoriteNumber max={10} />)
   expect(queryByTestId('error-message')).toBeNull()
 })
