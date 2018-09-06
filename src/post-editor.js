@@ -29,7 +29,7 @@ class Editor extends Component {
       return <Redirect to="/" />
     }
     if (this.state.error) {
-      return <div>{this.state.error}</div>
+      return <div data-testid="post-error">{this.state.error}</div>
     }
     return (
       <form onSubmit={this.handleSubmit}>
