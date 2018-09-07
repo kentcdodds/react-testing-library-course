@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {loadGreeting} from './utils'
+import {loadGreeting} from './api'
 
 class GreetingLoader extends Component {
   inputRef = React.createRef()

@@ -40,19 +40,21 @@ function renderEditor() {
   const fakeUser = userBuilder()
   const utils = render(<Editor user={fakeUser} />)
   const fakePost = postBuilder()
+
   utils.getByLabelText(/title/i).value = fakePost.title
   utils.getByLabelText(/content/i).value = fakePost.content
   utils.getByLabelText(/tags/i).value = fakePost.tags.join(', ')
+  const submitButton = utils.getByText(/submit/i)
   return {
     ...utils,
+    submitButton,
     fakeUser,
     fakePost,
-    submitButton: utils.getByText(/submit/i),
   }
 }
 
 test('renders a form with title, content, tags, and a submit button', async () => {
-  const {submitButton, fakeUser, fakePost} = renderEditor()
+  const {submitButton, fakePost, fakeUser} = renderEditor()
   const preDate = Date.now()
 
   fireEvent.click(submitButton)
@@ -79,7 +81,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
 test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
-  const {getByTestId, submitButton} = renderEditor()
+  const {submitButton, getByTestId} = renderEditor()
 
   fireEvent.click(submitButton)
 

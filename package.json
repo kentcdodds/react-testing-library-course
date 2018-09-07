@@ -44,7 +44,9 @@
       "import/prefer-default-export": "off",
       "jsx-a11y/label-has-for": "off",
       "react/prop-types": "off",
-      "import/no-unassigned-import": "off"
+      "import/no-unassigned-import": "off",
+      "no-console": "off",
+      "jsx-a11y/accessible-emoji": "off"
     }
   },
   "eslintIgnore": [
