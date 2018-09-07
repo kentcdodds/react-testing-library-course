@@ -3,7 +3,7 @@ import {Redirect} from 'react-router'
 import {savePost} from './api'
 
 class Editor extends React.Component {
-  state = {isSaving: false, error: null, redirect: false}
+  state = {isSaving: false, redirect: false, error: null}
   handleSubmit = e => {
     e.preventDefault()
     const {title, content, tags} = e.target.elements
