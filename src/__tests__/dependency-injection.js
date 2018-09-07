@@ -4,7 +4,7 @@ import 'react-testing-library/cleanup-after-each'
 
 import React from 'react'
 import {render, wait} from 'react-testing-library'
-import {GreetingLoader} from '../greeting-loader-01-dependency-injection'
+import {GreetingLoader} from '../greeting-loader-02-dependency-injection'
 
 test('loads greetings on click', async () => {
   const loadGreeting = jest.fn(subject =>

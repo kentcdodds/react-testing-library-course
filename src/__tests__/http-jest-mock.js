@@ -5,7 +5,7 @@ import 'react-testing-library/cleanup-after-each'
 import React from 'react'
 import {render, wait} from 'react-testing-library'
 import {loadGreeting as mockLoadGreeting} from '../api'
-import {GreetingLoader} from '../greeting-loader-02-mocking'
+import {GreetingLoader} from '../greeting-loader-01-mocking'
 
 jest.mock('../api', () => {
   return {
