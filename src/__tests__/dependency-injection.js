@@ -7,17 +7,17 @@ import {render, fireEvent, wait} from 'react-testing-library'
 import {GreetingLoader} from '../greeting-loader-02-dependency-injection'
 
 test('loads greetings on click', async () => {
-  const loadGreeting = jest.fn(subject =>
+  const mockLoadGreeting = jest.fn(subject =>
     Promise.resolve({data: {greeting: `Hi ${subject}`}}),
   )
   const {getByLabelText, getByText, getByTestId} = render(
-    <GreetingLoader loadGreeting={loadGreeting} />,
+    <GreetingLoader loadGreeting={mockLoadGreeting} />,
   )
   const nameInput = getByLabelText(/name/i)
   const loadButton = getByText(/load/i)
   nameInput.value = 'Mary'
   fireEvent.click(loadButton)
-  expect(loadGreeting).toHaveBeenCalledTimes(1)
-  expect(loadGreeting).toHaveBeenCalledWith('Mary')
-  await wait(() => expect(getByTestId('greeting')).toHaveTextContent('Hi Mary'))
+  expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
+  expect(mockLoadGreeting).toHaveBeenCalledWith('Mary')
+  await wait(() => expect(getByTestId('greeting')).toHaveTextContent(`Hi Mary`))
 })
