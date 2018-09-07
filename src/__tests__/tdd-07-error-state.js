@@ -29,11 +29,7 @@ afterEach(() => {
 const postBuilder = build('Post').fields({
   title: fake(f => f.lorem.words()),
   content: fake(f => f.lorem.paragraphs().replace(/\r/g, '')),
-  tags: fake(f =>
-    [f.lorem.word(), f.lorem.word(), f.lorem.word()].filter(
-      (w, i, a) => a.indexOf(w) === i,
-    ),
-  ),
+  tags: fake(f => [f.lorem.word(), f.lorem.word(), f.lorem.word()]),
 })
 
 const userBuilder = build('User').fields({
