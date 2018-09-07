@@ -24,7 +24,7 @@ afterEach(() => {
   console.error.mockRestore()
 })
 
-function BombButton({shouldThrow}) {
+function Bomb({shouldThrow}) {
   if (shouldThrow) {
     throw new Error('💣')
   } else {
@@ -35,19 +35,19 @@ function BombButton({shouldThrow}) {
 test('calls reportError and renders that there was a problem', () => {
   const {container, rerender, getByText} = render(
     <ErrorBoundary>
-      <BombButton />
+      <Bomb />
     </ErrorBoundary>,
   )
 
   rerender(
     <ErrorBoundary>
-      <BombButton shouldThrow={true} />
+      <Bomb shouldThrow={true} />
     </ErrorBoundary>,
   )
 
   expect(mockReportError).toHaveBeenCalledTimes(1)
   const error = expect.any(Error)
-  const info = {componentStack: expect.stringContaining('BombButton')}
+  const info = {componentStack: expect.stringContaining('Bomb')}
   expect(mockReportError).toHaveBeenCalledWith(error, info)
 
   expect(container).toHaveTextContent('There was a problem')
@@ -63,7 +63,7 @@ test('calls reportError and renders that there was a problem', () => {
 
   rerender(
     <ErrorBoundary>
-      <BombButton />
+      <Bomb />
     </ErrorBoundary>,
   )
   fireEvent.click(getByText(/try again/i))
