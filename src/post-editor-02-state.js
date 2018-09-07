@@ -1,10 +1,14 @@
 import React from 'react'
 
 class Editor extends React.Component {
-  state = {isSaving: true}
+  state = {isSaving: false}
+  handleSubmit = e => {
+    e.preventDefault()
+    this.setState({isSaving: true})
+  }
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <label htmlFor="title-input">Title</label>
         <input id="title-input" />
 
