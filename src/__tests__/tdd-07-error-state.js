@@ -72,7 +72,7 @@ test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
   const fakeUser = userBuilder()
-  const {getByLabelText, getByTestId, getByText} = render(
+  const {getByLabelText, getByText, getByTestId} = render(
     <Editor user={fakeUser} />,
   )
   const fakePost = postBuilder()
@@ -86,4 +86,5 @@ test('renders an error message from the server', async () => {
 
   const postError = await waitForElement(() => getByTestId('post-error'))
   expect(postError).toHaveTextContent(testError)
+  expect(submitButton).not.toBeDisabled()
 })

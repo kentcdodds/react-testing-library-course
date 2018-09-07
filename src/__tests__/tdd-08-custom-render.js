@@ -85,4 +85,5 @@ test('renders an error message from the server', async () => {
 
   const postError = await waitForElement(() => getByTestId('post-error'))
   expect(postError).toHaveTextContent(testError)
+  expect(submitButton).not.toBeDisabled()
 })

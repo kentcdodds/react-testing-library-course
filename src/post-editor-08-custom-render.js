@@ -24,9 +24,6 @@ class Editor extends React.Component {
     if (this.state.redirect) {
       return <Redirect to="/" />
     }
-    if (this.state.error) {
-      return <div data-testid="post-error">{this.state.error}</div>
-    }
     return (
       <form onSubmit={this.handleSubmit}>
         <label htmlFor="title-input">Title</label>
@@ -41,6 +38,9 @@ class Editor extends React.Component {
         <button type="submit" disabled={this.state.isSaving}>
           Submit
         </button>
+        {this.state.error ? (
+          <div data-testid="post-error">{this.state.error}</div>
+        ) : null}
       </form>
     )
   }
