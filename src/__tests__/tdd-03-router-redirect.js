@@ -1,5 +1,7 @@
+// these should normally be in your jest setupTestFrameworkScriptFile
 import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
+
 import React from 'react'
 import {render, fireEvent, wait} from 'react-testing-library'
 import {Redirect as MockRedirect} from 'react-router'
