@@ -16,7 +16,7 @@ class Editor extends React.Component {
     }
     this.setState({isSaving: true})
     savePost(newPost).then(
-      () => this.setState({isSaving: false, redirect: true}),
+      () => this.setState({redirect: true}),
       response => this.setState({isSaving: false, error: response.data.error}),
     )
   }

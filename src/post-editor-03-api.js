@@ -13,10 +13,7 @@ class Editor extends React.Component {
       authorId: this.props.user.id,
     }
     this.setState({isSaving: true})
-    savePost(newPost).then(
-      () => this.setState({isSaving: false}),
-      () => this.setState({isSaving: false}),
-    )
+    savePost(newPost)
   }
   render() {
     return (

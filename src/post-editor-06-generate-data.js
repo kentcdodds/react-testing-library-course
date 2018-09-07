@@ -15,10 +15,7 @@ class Editor extends React.Component {
       authorId: this.props.user.id,
     }
     this.setState({isSaving: true})
-    savePost(newPost).then(
-      () => this.setState({isSaving: false, redirect: true}),
-      () => this.setState({isSaving: false}),
-    )
+    savePost(newPost).then(() => this.setState({redirect: true}))
   }
   render() {
     if (this.state.redirect) {
