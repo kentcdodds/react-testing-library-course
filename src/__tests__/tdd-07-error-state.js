@@ -7,7 +7,7 @@ import {render, fireEvent, wait, waitForElement} from 'react-testing-library'
 import {build, fake, sequence} from 'test-data-bot'
 import {Redirect as MockRedirect} from 'react-router'
 import {savePost as mockSavePost} from '../api'
-import {Editor} from '../post-editor-07-custom-render'
+import {Editor} from '../post-editor-07-error-state'
 
 jest.mock('react-router', () => {
   return {
@@ -40,28 +40,20 @@ const userBuilder = build('User').fields({
   id: sequence(s => `user-${s}`),
 })
 
-function renderEditor() {
-  const fakeUser = userBuilder()
-  const utils = render(<Editor user={fakeUser} />)
-  const fakePost = postBuilder()
-  utils.getByLabelText(/title/i).value = fakePost.title
-  utils.getByLabelText(/content/i).value = fakePost.content
-  utils.getByLabelText(/tags/i).value = fakePost.tags.join(', ')
-  return {
-    ...utils,
-    fakeUser,
-    fakePost,
-    submitButton: utils.getByText(/submit/i),
-  }
-}
-
 test('renders a form with title, content, tags, and a submit button', async () => {
-  const {submitButton, fakeUser, fakePost} = renderEditor()
+  const fakeUser = userBuilder()
+  const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
+  const fakePost = postBuilder()
   const preDate = Date.now()
+
+  getByLabelText(/title/i).value = fakePost.title
+  getByLabelText(/content/i).value = fakePost.content
+  getByLabelText(/tags/i).value = fakePost.tags.join(', ')
+  const submitButton = getByText(/submit/i)
 
   fireEvent.click(submitButton)
 
-  expect(submitButton).toHaveAttribute('disabled')
+  expect(submitButton).toBeDisabled()
 
   expect(mockSavePost).toHaveBeenCalledTimes(1)
   expect(mockSavePost).toHaveBeenCalledWith({
@@ -83,7 +75,16 @@ test('renders a form with title, content, tags, and a submit button', async () =
 test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
-  const {getByTestId, submitButton} = renderEditor()
+  const fakeUser = userBuilder()
+  const {getByLabelText, getByTestId, getByText} = render(
+    <Editor user={fakeUser} />,
+  )
+  const fakePost = postBuilder()
+
+  getByLabelText(/title/i).value = fakePost.title
+  getByLabelText(/content/i).value = fakePost.content
+  getByLabelText(/tags/i).value = fakePost.tags.join(', ')
+  const submitButton = getByText(/submit/i)
 
   fireEvent.click(submitButton)
 

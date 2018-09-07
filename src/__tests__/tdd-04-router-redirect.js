@@ -6,7 +6,7 @@ import React from 'react'
 import {render, fireEvent, wait} from 'react-testing-library'
 import {Redirect as MockRedirect} from 'react-router'
 import {savePost as mockSavePost} from '../api'
-import {Editor} from '../post-editor-03-router-redirect'
+import {Editor} from '../post-editor-04-router-redirect'
 
 jest.mock('react-router', () => {
   return {
@@ -40,7 +40,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
 
   fireEvent.click(submitButton)
 
-  expect(submitButton).toHaveAttribute('disabled')
+  expect(submitButton).toBeDisabled()
 
   expect(mockSavePost).toHaveBeenCalledTimes(1)
   expect(mockSavePost).toHaveBeenCalledWith({

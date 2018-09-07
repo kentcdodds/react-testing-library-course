@@ -5,7 +5,7 @@ import 'react-testing-library/cleanup-after-each'
 import React from 'react'
 import {render, fireEvent} from 'react-testing-library'
 import {savePost as mockSavePost} from '../api'
-import {Editor} from '../post-editor-02-api'
+import {Editor} from '../post-editor-03-api'
 
 jest.mock('../api', () => {
   return {
@@ -32,7 +32,7 @@ test('renders a form with title, content, tags, and a submit button', () => {
 
   fireEvent.click(submitButton)
 
-  expect(submitButton).toHaveAttribute('disabled')
+  expect(submitButton).toBeDisabled()
 
   expect(mockSavePost).toHaveBeenCalledTimes(1)
   expect(mockSavePost).toHaveBeenCalledWith({
