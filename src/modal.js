@@ -8,6 +8,9 @@ if (!modalRoot) {
   document.body.appendChild(modalRoot)
 }
 
+// don't use this for your modals.
+// you need to think about accessibility and styling.
+// Look into: https://ui.reach.tech/dialog
 class Modal extends React.Component {
   el = document.createElement('div')
   componentDidMount() {
