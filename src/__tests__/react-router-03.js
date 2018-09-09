@@ -27,11 +27,12 @@ function render(
   }
 }
 
-test('full app rendering/navigating', () => {
-  const {getByTestId, getByText} = render(<Main />)
+test('main renders about and home and I can navigate to those pages', () => {
+  const {getByTestId, queryByTestId, getByText} = render(<Main />)
   expect(getByTestId('home-screen')).toBeInTheDocument()
-  const leftClick = {button: 0}
-  fireEvent.click(getByText(/about/i), leftClick)
+  expect(queryByTestId('about-screen')).not.toBeInTheDocument()
+  fireEvent.click(getByText(/about/i))
+  expect(queryByTestId('home-screen')).not.toBeInTheDocument()
   expect(getByTestId('about-screen')).toBeInTheDocument()
   // you can use the `within` function to get queries for elements within the
   // about screen
