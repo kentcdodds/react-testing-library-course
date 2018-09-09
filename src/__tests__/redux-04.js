@@ -24,13 +24,13 @@ function render(
   }
 }
 
-test('can render with redux with defaults', () => {
+test('can increment the value', () => {
   const {getByTestId, getByText} = render(<ConnectedCounter />)
   fireEvent.click(getByText('+'))
   expect(getByTestId('count-value')).toHaveTextContent('1')
 })
 
-test('can render with redux with custom initial state', () => {
+test('can decrement the value', () => {
   const {getByTestId, getByText} = render(<ConnectedCounter />, {
     initialState: {count: 3},
   })
