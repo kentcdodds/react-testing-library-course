@@ -38,7 +38,7 @@ test('main renders about and home and I can navigate to those pages', () => {
   // about screen
 })
 
-test('landing on a bad page', () => {
+test('landing on a bad page shows no match component', () => {
   const {getByTestId} = render(<Main />, {
     route: '/something-that-does-not-match',
   })
