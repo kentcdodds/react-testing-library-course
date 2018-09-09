@@ -56,7 +56,7 @@ export {ConnectedCounter, reducer}
 // const store = createStore(reducer)
 // ReactDOM.render(
 //   <Provider store={store}>
-//     <Counter />
+//     <ConnectedCounter />
 //   </Provider>,
 //   document.getElementById('root'),
 // )
