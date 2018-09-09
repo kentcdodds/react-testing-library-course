@@ -8,14 +8,12 @@ import {Toggle} from '../toggle'
 
 function setup() {
   const childrenArg = {}
-  const children = jest.fn(arg => {
+  const children = arg => {
     Object.assign(childrenArg, arg)
     return null
-  })
-  const utils = render(<Toggle>{children}</Toggle>)
+  }
+  render(<Toggle>{children}</Toggle>)
   return {
-    ...utils,
-    children,
     childrenArg,
   }
 }
