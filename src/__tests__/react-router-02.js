@@ -22,7 +22,7 @@ test('main renders about and home and I can navigate to those pages', () => {
   expect(getByTestId('about-screen')).toBeInTheDocument()
 })
 
-test('landing on a bad page', () => {
+test('landing on a bad page shows no match component', () => {
   const history = createMemoryHistory({
     initialEntries: ['/something-that-does-not-match'],
   })
