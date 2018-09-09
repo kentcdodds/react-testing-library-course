@@ -7,22 +7,20 @@ import {render, fireEvent} from 'react-testing-library'
 import {HiddenMessage} from '../hidden-message'
 
 jest.mock('react-transition-group', () => {
-  const FakeTransition = jest.fn(({children}) => children)
-  const FakeCSSTransition = jest.fn(
-    props =>
-      props.in ? <FakeTransition>{props.children}</FakeTransition> : null,
-  )
-  return {CSSTransition: FakeCSSTransition, Transition: FakeTransition}
+  return {
+    CSSTransition: props => (props.in ? props.children : null),
+  }
 })
 
-test('you can mock things with jest.mock', () => {
+test('shows hidden message when toggle is clicked', () => {
   const myMessage = 'hello world'
   const {getByText, queryByText} = render(
     <HiddenMessage>{myMessage}</HiddenMessage>,
   )
+  const toggleButton = getByText(/toggle/i)
   expect(queryByText(myMessage)).not.toBeInTheDocument()
-  fireEvent.click(getByText(/toggle/i))
+  fireEvent.click(toggleButton)
   expect(getByText(myMessage)).toBeInTheDocument()
-  fireEvent.click(getByText(/toggle/i))
+  fireEvent.click(toggleButton)
   expect(queryByText(myMessage)).not.toBeInTheDocument()
 })
