@@ -10,7 +10,6 @@ class Countdown extends React.Component {
         clearInterval(this.interval)
         this.setState({remainingTime: 0})
       } else {
-        console.log('setting state')
         this.setState({
           remainingTime,
         })
