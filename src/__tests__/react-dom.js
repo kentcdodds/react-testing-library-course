@@ -3,7 +3,7 @@
 // 🐨 Here's your component:
 // import {FavoriteNumber} from '../favorite-number'
 
-test.skip('renders a number input with a label "Favorite Number"', () => {
+test('renders a number input with a label "Favorite Number"', () => {
   // 🐨 create a div (💯 document.createElement)
   // 🐨 render the FavoriteNumber component to that div with ReactDOM.render
   // 🐨 assert the input type attribute is a number
