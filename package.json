@@ -48,7 +48,8 @@
       "react/prop-types": "off",
       "import/no-unassigned-import": "off",
       "no-console": "off",
-      "jsx-a11y/accessible-emoji": "off"
+      "jsx-a11y/accessible-emoji": "off",
+      "jest/no-disabled-tests": "off"
     }
   },
   "eslintIgnore": [
