@@ -2,15 +2,13 @@
 import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
 
-import React from 'react'
-import {render} from 'react-testing-library'
-import {Modal} from '../modal'
+// 0⃣ 🐨 you'll need these
+// import React from 'react'
+// import {render} from 'react-testing-library'
+// import {Modal} from '../modal'
 
 test('modal shows the children', () => {
-  const {getByText} = render(
-    <Modal>
-      <div>test</div>
-    </Modal>,
-  )
-  expect(getByText('test')).toBeInTheDocument()
+  // 1⃣ 🐨 render the modal with anything you want as the children
+  // 2⃣ 🐨 add an assertion that what you want is in the document.
+  // seriously... that's it...
 })

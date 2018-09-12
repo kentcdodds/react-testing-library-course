@@ -8,11 +8,11 @@ prop-updates.js
 unmounting.js
 
 mock-component.js
-error-boundary.js
 portals.js
 http-jest-mock.js
 dependency-injection.js
 a11y.js
+error-boundary.js
 
 react-router-01.js
 react-router-02.js
