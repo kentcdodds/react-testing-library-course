@@ -10,7 +10,7 @@
     "lint": "kcd-scripts lint",
     "precommit": "kcd-scripts precommit",
     "validate": "kcd-scripts validate",
-    "setup": "node ./scripts/autofill-feedback-email && node ./scripts/verify && node ./scripts/install && npm run validate --silent"
+    "setup": "node ./scripts/verify && node ./scripts/install && npm run validate --silent && node ./scripts/autofill-feedback-email"
   },
   "keywords": [],
   "author": "Kent C. Dodds <kent@doddsfamily.us> (http://kentcdodds.com/)",
