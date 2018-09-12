@@ -29,6 +29,7 @@ Run these commands in your terminal to get yourself setup:
 ```
 git clone https://github.com/kentcdodds/react-testing-library-course.git --branch workshop-2018-09
 cd react-testing-library-course/
+npm install
 npm run setup
 ```
 
