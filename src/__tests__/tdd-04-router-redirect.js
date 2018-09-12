@@ -3,16 +3,13 @@ import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
 
 import React from 'react'
-import {render, fireEvent, wait} from 'react-testing-library'
-import {Redirect as MockRedirect} from 'react-router'
+// 🐨 you'll need to also import wait from 'react-testing-library' here
+import {render, fireEvent} from 'react-testing-library'
+// 🐨 import your mocked version of the Redirect component
 import {savePost as mockSavePost} from '../api'
-import {Editor} from '../post-editor-04-router-redirect'
+import {Editor} from '../post-editor'
 
-jest.mock('react-router', () => {
-  return {
-    Redirect: jest.fn(() => null),
-  }
-})
+// 🐨 you'll need to mock react-router's Redirect component here
 
 jest.mock('../api', () => {
   return {
@@ -21,11 +18,13 @@ jest.mock('../api', () => {
 })
 
 afterEach(() => {
-  MockRedirect.mockClear()
+  // 🐨 clear the Redirect mock here
   mockSavePost.mockClear()
 })
 
-test('renders a form with title, content, tags, and a submit button', async () => {
+// 🐨 unskip this test
+// 🐨 you'll need to make this an async test
+test.skip('renders a form with title, content, tags, and a submit button', () => {
   const fakeUser = {id: 'user-1'}
   const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
   const fakePost = {
@@ -48,7 +47,8 @@ test('renders a form with title, content, tags, and a submit button', async () =
     authorId: fakeUser.id,
   })
 
-  await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
-
-  expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {})
+  // 🐨 wait until your mock Redirect component has been called once
+  // 🐨 ensure that your mock Redirect component was called with the props: {to: '/'}
+  // 💯 react function components are called with 2 arguments: props and context
+  // context in this case is an empty object.
 })

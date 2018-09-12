@@ -6,7 +6,7 @@ import React from 'react'
 import {render, fireEvent, wait} from 'react-testing-library'
 import {Redirect as MockRedirect} from 'react-router'
 import {savePost as mockSavePost} from '../api'
-import {Editor} from '../post-editor'
+import {Editor} from '../post-editor-05-dates'
 
 jest.mock('react-router', () => {
   return {
@@ -25,8 +25,7 @@ afterEach(() => {
   mockSavePost.mockClear()
 })
 
-// 🐨 unskip this test
-test.skip('renders a form with title, content, tags, and a submit button', async () => {
+test('renders a form with title, content, tags, and a submit button', async () => {
   const fakeUser = {id: 'user-1'}
   const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
   const fakePost = {
@@ -34,7 +33,8 @@ test.skip('renders a form with title, content, tags, and a submit button', async
     content: 'Test content',
     tags: ['tag1', 'tag2'],
   }
-  // 🐨 save the current date here (use Date.now())
+  const preDate = Date.now()
+
   getByLabelText(/title/i).value = fakePost.title
   getByLabelText(/content/i).value = fakePost.content
   getByLabelText(/tags/i).value = fakePost.tags.join(', ')
@@ -47,16 +47,14 @@ test.skip('renders a form with title, content, tags, and a submit button', async
   expect(mockSavePost).toHaveBeenCalledTimes(1)
   expect(mockSavePost).toHaveBeenCalledWith({
     ...fakePost,
-    // 🐨 verify that this also as a `date` property that is a string (expect.any(String))
+    date: expect.any(String),
     authorId: fakeUser.id,
   })
 
-  // 🐨 get the current date now (Date.now())
-  // 🐨 verify that the date mockSavePost was called with is less than the
-  // preDate and greater than the postDate
-  // 💯 get the date mockSavePost was called with via:
-  //   new Date(mockSavePost.mock.calls[0][0].date).getTime()
-  // use toBeGreaterThanOrEqual and toBeLessThanOrEqual
+  const postDate = Date.now()
+  const date = new Date(mockSavePost.mock.calls[0][0].date).getTime()
+  expect(date).toBeGreaterThanOrEqual(preDate)
+  expect(date).toBeLessThanOrEqual(postDate)
 
   await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
 

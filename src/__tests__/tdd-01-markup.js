@@ -2,14 +2,13 @@
 import 'jest-dom/extend-expect'
 import 'react-testing-library/cleanup-after-each'
 
-import React from 'react'
-import {render} from 'react-testing-library'
-import {Editor} from '../post-editor-01-markup'
+// 🐨 you're gonna need these
+// import React from 'react'
+// import {render} from 'react-testing-library'
+// import {Editor} from '../post-editor'
 
 test('renders a form with title, content, tags, and a submit button', () => {
-  const {getByLabelText, getByText} = render(<Editor />)
-  getByLabelText(/title/i)
-  getByLabelText(/content/i)
-  getByLabelText(/tags/i)
-  getByText(/submit/i)
+  // 🐨 render the editor
+  // 🐨 verify that you can get the title, content, and tags by their label text
+  // 🐨 verify that you can get the submit button by its label text
 })
