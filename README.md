@@ -7,24 +7,38 @@ _Course material for testing React components using react-testing-library_
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-I'm still working on the README. But here's the order these should be given in:
+<small>I'm still working on the README... sorry...</small>
 
-- `react-dom.js` - Render a React component for testing
-- `jest-dom.js` - Use jest-dom for improved assertions
-- `dom-testing-library.js` - Use dom-testing-library to write more maintainable React tests
-- `react-testing-library.js` - Use react-testing-library to render and test React Components
-- `localized.js` - Testing localized content with react-testing-library
-- `state.js` - Test React Component state changes with react-testing-library
-- `prop-updates.js` - Test prop updates with react-testing-library
-- `a11y.js` - Test accessibility of rendered React Components with jest-axe
-- `dependency-injection.js` - Mock HTTP Requests with Dependency Injection in React Component Tests
-- `http-jest-mock.js` - Mock HTTP Requests with jest.mock in React Component Tests
-- `mock-component.js` - Mock react-transition-group in React Component Tests with jest.mock
-- `error-boundaries.js` - Test componentDidCatch handler error boundaries with react-testing-library
-- `tdd-markup.js` - Test drive the development of a React Form with react-testing-library
-- `tdd-functionality.js` - TDD the functionality of a React Form with react-testing-library
-- `react-router-provider.js` - Test react-router Provider history object in React Component Tests with createMemoryHistory
-- `redux.js` - Test a redux connected React Component
-- `render-props.js` - Test a render prop component using a Jest spy function
-- `portals.js` - Test React portals with react-testing-library’s `within` API
-- `unmounting.js` - Test Unmounting a React Component with react-testing-library
+We're going to be learning how to write tests with React and
+[react-testing-library](https://github.com/kentcdodds/react-testing-library).
+It's going to be fantastic.
+
+## Pre-requisites:
+
+You should be familiar with modern JavaScript and writing React applications.
+Prior testing experience is not necessary.
+
+## System Requirements:
+
+You'll need git and node@>=8 installed.
+
+## Setup:
+
+Run these commands in your terminal to get yourself setup:
+
+```
+git clone https://github.com/kentcdodds/react-testing-library-course.git --branch workshop-2018-09
+cd react-testing-library-course/
+npm run setup
+```
+
+Please answer the prompt about your email. That should get you all setup.
+If you have issues I can help you work through them while everyone else is
+working on exercises.
+
+## License
+
+This material is available for private, non-commercial use under the
+[GPL version 3](http://www.gnu.org/licenses/gpl-3.0-standalone.html). If you
+would like to use this material to conduct your own workshop, please contact me
+at kent@doddsfamily.us
