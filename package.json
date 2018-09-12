@@ -61,7 +61,8 @@
   },
   "eslintIgnore": [
     "node_modules",
-    "coverage"
+    "coverage",
+    "scripts"
   ],
   "prettier": {
     "printWidth": 80,
