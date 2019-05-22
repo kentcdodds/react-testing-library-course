@@ -20,7 +20,7 @@ test('modal shows the children', () => {
 // 3. Change submitted from `false` to `true`
 // 4. And you're all done!
 /*
-http://ws.kcd.im/?ws=react-testing-library-course&e=portals&em=
+http://ws.kcd.im/?ws=react-testing-library-course&e=portals&em=felixglush@gmail.com
 */
 test.skip('I submitted my elaboration and feedback', () => {
   const submitted = false // change this when you've submitted!
