@@ -5,8 +5,8 @@
   "description": "Course material for testing React components using react-testing-library",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "kcd-scripts test --coverage",
+    "test:watch": "kcd-scripts test --watch",
     "lint": "kcd-scripts lint",
     "validate": "kcd-scripts validate",
     "setup": "npm install --silent && npm run validate --silent"
@@ -50,7 +50,8 @@
       "react/prop-types": "off",
       "import/no-unassigned-import": "off",
       "no-console": "off",
-      "jsx-a11y/accessible-emoji": "off"
+      "jsx-a11y/accessible-emoji": "off",
+      "consistent-return": "off"
     }
   },
   "eslintIgnore": [
@@ -65,7 +66,8 @@
     "singleQuote": true,
     "trailingComma": "all",
     "bracketSpacing": false,
-    "jsxBracketSameLine": false
+    "jsxBracketSameLine": false,
+    "proseWrap": "always"
   },
   "repository": {
     "type": "git",

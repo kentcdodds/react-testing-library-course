@@ -1,30 +1,27 @@
 import React from 'react'
 
-class FavoriteNumber extends React.Component {
-  static defaultProps = {min: 1, max: 9}
-  state = {number: 0, numberEntered: false}
-  handleChange = event => {
-    this.setState({numberEntered: true, number: Number(event.target.value)})
+function FavoriteNumber({min = 1, max = 9}) {
+  const [number, setNumber] = React.useState(0)
+  const [numberEntered, setNumberEntered] = React.useState(false)
+  function handleChange(event) {
+    setNumber(Number(event.target.value))
+    setNumberEntered(true)
   }
-  render() {
-    const {number, numberEntered} = this.state
-    const {min, max} = this.props
-    const isValid = !numberEntered || (number >= min && number <= max)
-    return (
-      <div>
-        <label htmlFor="favorite-number">Favorite Number</label>
-        <input
-          id="favorite-number"
-          type="number"
-          value={number}
-          onChange={this.handleChange}
-        />
-        {isValid ? null : (
-          <div data-testid="error-message">The number is invalid</div>
-        )}
-      </div>
-    )
-  }
+  const isValid = !numberEntered || (number >= min && number <= max)
+  return (
+    <div>
+      <label htmlFor="favorite-number">Favorite Number</label>
+      <input
+        id="favorite-number"
+        type="number"
+        value={number}
+        onChange={handleChange}
+      />
+      {isValid ? null : (
+        <div data-testid="error-message">The number is invalid</div>
+      )}
+    </div>
+  )
 }
 
 export {FavoriteNumber}

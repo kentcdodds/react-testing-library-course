@@ -1,7 +1,3 @@
-// these should normally be in your jest setupFilesAfterEnv
-import '@testing-library/jest-dom/extend-expect'
-import '@testing-library/react/cleanup-after-each'
-
 import React from 'react'
 import {render, fireEvent, wait, waitForElement} from '@testing-library/react'
 import {build, fake, sequence} from 'test-data-bot'

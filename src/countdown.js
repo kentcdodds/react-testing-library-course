@@ -1,27 +1,21 @@
 import React from 'react'
 
-class Countdown extends React.Component {
-  state = {remainingTime: 10000}
-  componentDidMount() {
-    const end = Date.now() + this.state.remainingTime
-    this.interval = setInterval(() => {
-      const remainingTime = end - Date.now()
-      if (remainingTime <= 0) {
-        clearInterval(this.interval)
-        this.setState({remainingTime: 0})
+function Countdown() {
+  const [remainingTime, setRemainingTime] = React.useState(10000)
+  const end = React.useRef(Date.now() + remainingTime)
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      const newRemainingTime = end.current - Date.now()
+      if (newRemainingTime <= 0) {
+        clearInterval(interval)
+        setRemainingTime(0)
       } else {
-        this.setState({
-          remainingTime,
-        })
+        setRemainingTime(newRemainingTime)
       }
     })
-  }
-  componentWillUnmount() {
-    clearInterval(this.interval)
-  }
-  render() {
-    return this.state.remainingTime
-  }
+    return () => clearInterval(interval)
+  }, [])
+  return remainingTime
 }
 
 export {Countdown}

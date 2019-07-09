@@ -1,7 +1,3 @@
-// these should normally be in your jest setupFilesAfterEnv
-import '@testing-library/jest-dom/extend-expect'
-import '@testing-library/react/cleanup-after-each'
-
 import React from 'react'
 import {render, fireEvent, wait} from '@testing-library/react'
 import {GreetingLoader} from '../greeting-loader-02-dependency-injection'
