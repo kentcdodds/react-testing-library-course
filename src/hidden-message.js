@@ -9,21 +9,17 @@ function Fade({children, ...props}) {
   )
 }
 
-class HiddenMessage extends React.Component {
-  state = {show: false}
-  toggle = () => {
-    this.setState(({show}) => ({show: !show}))
-  }
-  render() {
-    return (
-      <div>
-        <button onClick={this.toggle}>Toggle</button>
-        <Fade in={this.state.show}>
-          <div>{this.props.children}</div>
-        </Fade>
-      </div>
-    )
-  }
+function HiddenMessage({children}) {
+  const [show, setShow] = React.useState(false)
+  const toggle = () => setShow(s => !s)
+  return (
+    <div>
+      <button onClick={toggle}>Toggle</button>
+      <Fade in={show}>
+        <div>{children}</div>
+      </Fade>
+    </div>
+  )
 }
 
 export {HiddenMessage}

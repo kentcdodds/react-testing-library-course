@@ -6,14 +6,12 @@ import {Main} from '../main'
 
 test('main renders about and home and I can navigate to those pages', () => {
   const history = createMemoryHistory({initialEntries: ['/']})
-  const {getByTestId, queryByTestId, getByText} = render(
+  const {getByRole, getByText} = render(
     <Router history={history}>
       <Main />
     </Router>,
   )
-  expect(getByTestId('home-screen')).toBeInTheDocument()
-  expect(queryByTestId('about-screen')).not.toBeInTheDocument()
+  expect(getByRole('heading')).toHaveTextContent(/Home/)
   fireEvent.click(getByText(/about/i))
-  expect(queryByTestId('home-screen')).not.toBeInTheDocument()
-  expect(getByTestId('about-screen')).toBeInTheDocument()
+  expect(getByRole('heading')).toHaveTextContent(/About/)
 })

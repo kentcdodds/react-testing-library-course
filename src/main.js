@@ -2,10 +2,23 @@ import React from 'react'
 import {Switch, Route, Link} from 'react-router-dom'
 
 const About = () => (
-  <div data-testid="about-screen">You are on the about page</div>
+  <div>
+    <h1>About</h1>
+    <p>You are on the about page</p>
+  </div>
 )
-const Home = () => <div data-testid="home-screen">You are home</div>
-const NoMatch = () => <div data-testid="no-match-screen">No match</div>
+const Home = () => (
+  <div>
+    <h1>Home</h1>
+    <p>You are home</p>
+  </div>
+)
+const NoMatch = () => (
+  <div>
+    <h1>404</h1>
+    <p>No match</p>
+  </div>
+)
 
 function Main() {
   return (

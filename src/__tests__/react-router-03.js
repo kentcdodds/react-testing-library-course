@@ -24,19 +24,17 @@ function render(
 }
 
 test('main renders about and home and I can navigate to those pages', () => {
-  const {getByTestId, queryByTestId, getByText} = render(<Main />)
-  expect(getByTestId('home-screen')).toBeInTheDocument()
-  expect(queryByTestId('about-screen')).not.toBeInTheDocument()
+  const {getByRole, getByText} = render(<Main />)
+  expect(getByRole('heading')).toHaveTextContent(/Home/)
   fireEvent.click(getByText(/about/i))
-  expect(queryByTestId('home-screen')).not.toBeInTheDocument()
-  expect(getByTestId('about-screen')).toBeInTheDocument()
+  expect(getByRole('heading')).toHaveTextContent(/About/)
   // you can use the `within` function to get queries for elements within the
   // about screen
 })
 
 test('landing on a bad page shows no match component', () => {
-  const {getByTestId} = render(<Main />, {
+  const {getByRole} = render(<Main />, {
     route: '/something-that-does-not-match',
   })
-  expect(getByTestId('no-match-screen')).toBeInTheDocument()
+  expect(getByRole('heading')).toHaveTextContent(/404/)
 })

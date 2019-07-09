@@ -6,26 +6,24 @@ import {Main} from '../main'
 
 test('main renders about and home and I can navigate to those pages', () => {
   const history = createMemoryHistory({initialEntries: ['/']})
-  const {getByTestId, queryByTestId, getByText} = render(
+  const {getByRole, getByText} = render(
     <Router history={history}>
       <Main />
     </Router>,
   )
-  expect(getByTestId('home-screen')).toBeInTheDocument()
-  expect(queryByTestId('about-screen')).not.toBeInTheDocument()
+  expect(getByRole('heading')).toHaveTextContent(/Home/)
   fireEvent.click(getByText(/about/i))
-  expect(queryByTestId('home-screen')).not.toBeInTheDocument()
-  expect(getByTestId('about-screen')).toBeInTheDocument()
+  expect(getByRole('heading')).toHaveTextContent(/About/)
 })
 
 test('landing on a bad page shows no match component', () => {
   const history = createMemoryHistory({
     initialEntries: ['/something-that-does-not-match'],
   })
-  const {getByTestId} = render(
+  const {getByRole} = render(
     <Router history={history}>
       <Main />
     </Router>,
   )
-  expect(getByTestId('no-match-screen')).toBeInTheDocument()
+  expect(getByRole('heading')).toHaveTextContent(/404/)
 })
