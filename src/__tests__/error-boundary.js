@@ -1,9 +1,9 @@
-// these should normally be in your jest setupTestFrameworkScriptFile
-import 'react-testing-library/cleanup-after-each'
-import 'jest-dom/extend-expect'
+// these should normally be in your jest setupFilesAfterEnv
+import '@testing-library/react/cleanup-after-each'
+import '@testing-library/jest-dom/extend-expect'
 
 import React from 'react'
-import {render, fireEvent} from 'react-testing-library'
+import {render, fireEvent} from '@testing-library/react'
 import {reportError as mockReportError} from '../api'
 import {ErrorBoundary} from '../error-boundary'
 

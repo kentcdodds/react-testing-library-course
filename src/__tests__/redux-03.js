@@ -1,11 +1,11 @@
-// these should normally be in your jest setupTestFrameworkScriptFile
-import 'jest-dom/extend-expect'
-import 'react-testing-library/cleanup-after-each'
+// these should normally be in your jest setupFilesAfterEnv
+import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/react/cleanup-after-each'
 
 import React from 'react'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import {render as rtlRender, fireEvent} from 'react-testing-library'
+import {render as rtlRender, fireEvent} from '@testing-library/react'
 import {reducer, ConnectedCounter} from '../redux-app'
 
 // this is a handy function that I normally make available for all my tests

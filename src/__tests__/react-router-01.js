@@ -1,11 +1,11 @@
-// these should normally be in your jest setupTestFrameworkScriptFile
-import 'jest-dom/extend-expect'
-import 'react-testing-library/cleanup-after-each'
+// these should normally be in your jest setupFilesAfterEnv
+import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/react/cleanup-after-each'
 
 import React from 'react'
 import {Router} from 'react-router-dom'
 import {createMemoryHistory} from 'history'
-import {render, fireEvent} from 'react-testing-library'
+import {render, fireEvent} from '@testing-library/react'
 import {Main} from '../main'
 
 test('main renders about and home and I can navigate to those pages', () => {

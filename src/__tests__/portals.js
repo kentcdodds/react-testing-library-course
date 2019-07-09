@@ -1,9 +1,9 @@
-// these should normally be in your jest setupTestFrameworkScriptFile
-import 'jest-dom/extend-expect'
-import 'react-testing-library/cleanup-after-each'
+// these should normally be in your jest setupFilesAfterEnv
+import '@testing-library/jest-dom/extend-expect'
+import '@testing-library/react/cleanup-after-each'
 
 import React from 'react'
-import {render} from 'react-testing-library'
+import {render} from '@testing-library/react'
 import {Modal} from '../modal'
 
 test('modal shows the children', () => {

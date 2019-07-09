@@ -1,7 +1,7 @@
-import 'jest-dom/extend-expect'
+import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {getQueriesForElement} from 'dom-testing-library'
+import {getQueriesForElement} from '@testing-library/dom'
 import {FavoriteNumber} from '../favorite-number'
 
 test('renders a number input with a label "Favorite Number"', () => {
