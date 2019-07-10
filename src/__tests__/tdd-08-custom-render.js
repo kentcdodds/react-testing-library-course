@@ -77,11 +77,11 @@ test('renders a form with title, content, tags, and a submit button', async () =
 test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
-  const {submitButton, getByTestId} = renderEditor()
+  const {submitButton, getByRole} = renderEditor()
 
   fireEvent.click(submitButton)
 
-  const postError = await waitForElement(() => getByTestId('post-error'))
+  const postError = await waitForElement(() => getByRole('alert'))
   expect(postError).toHaveTextContent(testError)
   expect(submitButton).not.toBeDisabled()
 })
