@@ -1,36 +1,24 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
 
 ////// counter.js
 
-class Counter extends React.Component {
-  increment = () => {
-    this.props.dispatch({type: 'INCREMENT'})
-  }
-
-  decrement = () => {
-    this.props.dispatch({type: 'DECREMENT'})
-  }
-
-  render() {
-    return (
+function Counter() {
+  const count = useSelector(state => state.count)
+  const dispatch = useDispatch()
+  const increment = () => dispatch({type: 'INCREMENT'})
+  const decrement = () => dispatch({type: 'DECREMENT'})
+  return (
+    <div>
+      <h2>Counter</h2>
       <div>
-        <h2>Counter</h2>
-        <div>
-          <button onClick={this.decrement}>-</button>
-          <span data-testid="count-value">{this.props.count}</span>
-          <button onClick={this.increment}>+</button>
-        </div>
+        <button onClick={decrement}>-</button>
+        <span data-testid="count-value">{count}</span>
+        <button onClick={increment}>+</button>
       </div>
-    )
-  }
+    </div>
+  )
 }
-
-// normally this would be:
-// export default connect(state => ({count: state.count}))(Counter)
-// but for this test we'll give it a variable name
-// because we're doing this all in one file
-const ConnectedCounter = connect(state => ({count: state.count}))(Counter)
 
 ////// reducers.js
 
@@ -50,13 +38,13 @@ function reducer(state = initialState, action) {
   }
 }
 
-export {ConnectedCounter, reducer}
+export {Counter, reducer}
 
 // In another file, you'd import these things and do:
 // const store = createStore(reducer)
 // ReactDOM.render(
 //   <Provider store={store}>
-//     <ConnectedCounter />
+//     <Counter />
 //   </Provider>,
 //   document.getElementById('root'),
 // )

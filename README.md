@@ -32,7 +32,7 @@ _Course material for testing React components using react-testing-library_
 - `react-router-provider.js` - Test react-router Provider history object in
   React Component Tests with createMemoryHistory
 - `redux.js` - Test a redux connected React Component
-- `render-props.js` - Test a render prop component using a Jest spy function
+- `custom-hook.js` - Test a custom hook
 - `portals.js` - Test React portals with react-testing-library’s `within` API
 - `unmounting.js` - Test Unmounting a React Component with react-testing-library
 

@@ -2,13 +2,13 @@ import React from 'react'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {render, fireEvent} from '@testing-library/react'
-import {reducer, ConnectedCounter} from '../redux-app'
+import {reducer, Counter} from '../redux-app'
 
 test('can render with redux with defaults', () => {
   const store = createStore(reducer)
   const {getByTestId, getByText} = render(
     <Provider store={store}>
-      <ConnectedCounter />
+      <Counter />
     </Provider>,
   )
   fireEvent.click(getByText('+'))
