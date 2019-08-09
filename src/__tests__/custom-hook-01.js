@@ -1,5 +1,5 @@
 import React from 'react'
-import {render} from '@testing-library/react'
+import {render, act} from '@testing-library/react'
 import {useCounter} from '../use-counter'
 
 test('exposes the count and increment/decrement functions', () => {
@@ -10,8 +10,8 @@ test('exposes the count and increment/decrement functions', () => {
   }
   render(<TestComponent />)
   expect(result.current.count).toBe(0)
-  result.current.increment()
+  act(() => result.current.increment())
   expect(result.current.count).toBe(1)
-  result.current.decrement()
+  act(() => result.current.decrement())
   expect(result.current.count).toBe(0)
 })

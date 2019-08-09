@@ -1,5 +1,5 @@
 import React from 'react'
-import {render} from '@testing-library/react'
+import {render, act} from '@testing-library/react'
 import {useCounter} from '../use-counter'
 
 function setup({initialProps} = {}) {
@@ -15,9 +15,9 @@ function setup({initialProps} = {}) {
 test('exposes the count and increment/decrement functions', () => {
   const result = setup()
   expect(result.current.count).toBe(0)
-  result.current.increment()
+  act(() => result.current.increment())
   expect(result.current.count).toBe(1)
-  result.current.decrement()
+  act(() => result.current.decrement())
   expect(result.current.count).toBe(0)
 })
 
@@ -29,8 +29,8 @@ test('allows customization of the initial count', () => {
 test('allows customization of the step', () => {
   const result = setup({initialProps: {step: 2}})
   expect(result.current.count).toBe(0)
-  result.current.increment()
+  act(() => result.current.increment())
   expect(result.current.count).toBe(2)
-  result.current.decrement()
+  act(() => result.current.decrement())
   expect(result.current.count).toBe(0)
 })
