@@ -41,10 +41,10 @@ test('calls reportError and renders that there was a problem', () => {
     </ErrorBoundary>,
   )
 
-  expect(mockReportError).toHaveBeenCalledTimes(1)
   const error = expect.any(Error)
   const info = {componentStack: expect.stringContaining('Bomb')}
   expect(mockReportError).toHaveBeenCalledWith(error, info)
+  expect(mockReportError).toHaveBeenCalledTimes(1)
 
   expect(container).toHaveTextContent('There was a problem')
 

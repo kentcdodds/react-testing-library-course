@@ -14,8 +14,14 @@ function render(
     ...renderOptions
   } = {},
 ) {
+  function Wrapper({children}) {
+    return <Router history={history}>{children}</Router>
+  }
   return {
-    ...rtlRender(<Router history={history}>{ui}</Router>, renderOptions),
+    ...rtlRender(ui, {
+      wrapper: Wrapper,
+      ...renderOptions,
+    }),
     // adding `history` to the returned utilities to allow us
     // to reference it in our tests (just try to avoid using
     // this to test implementation details).

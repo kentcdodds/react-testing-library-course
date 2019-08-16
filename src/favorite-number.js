@@ -17,9 +17,7 @@ function FavoriteNumber({min = 1, max = 9}) {
         value={number}
         onChange={handleChange}
       />
-      {isValid ? null : (
-        <div data-testid="error-message">The number is invalid</div>
-      )}
+      {isValid ? null : <div role="alert">The number is invalid</div>}
     </div>
   )
 }

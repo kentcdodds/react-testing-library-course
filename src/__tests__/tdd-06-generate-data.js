@@ -47,19 +47,18 @@ test('renders a form with title, content, tags, and a submit button', async () =
 
   expect(submitButton).toBeDisabled()
 
-  expect(mockSavePost).toHaveBeenCalledTimes(1)
   expect(mockSavePost).toHaveBeenCalledWith({
     ...fakePost,
     date: expect.any(String),
     authorId: fakeUser.id,
   })
+  expect(mockSavePost).toHaveBeenCalledTimes(1)
 
   const postDate = Date.now()
   const date = new Date(mockSavePost.mock.calls[0][0].date).getTime()
   expect(date).toBeGreaterThanOrEqual(preDate)
   expect(date).toBeLessThanOrEqual(postDate)
 
-  await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
-
-  expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {})
+  await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
+  expect(MockRedirect).toHaveBeenCalledTimes(1)
 })

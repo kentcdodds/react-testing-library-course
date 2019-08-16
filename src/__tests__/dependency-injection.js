@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, fireEvent, wait} from '@testing-library/react'
+import {render, fireEvent, waitForDomChange} from '@testing-library/react'
 import {GreetingLoader} from '../greeting-loader-02-dependency-injection'
 
 test('loads greetings on click', async () => {
@@ -13,7 +13,9 @@ test('loads greetings on click', async () => {
   const loadButton = getByText(/load/i)
   nameInput.value = 'Mary'
   fireEvent.click(loadButton)
-  expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
   expect(mockLoadGreeting).toHaveBeenCalledWith('Mary')
-  await wait(() => expect(getByTestId('greeting')).toHaveTextContent(`Hi Mary`))
+  expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
+  await waitForDomChange(() =>
+    expect(getByTestId('greeting')).toHaveTextContent(`Hi Mary`),
+  )
 })

@@ -38,13 +38,12 @@ test('renders a form with title, content, tags, and a submit button', async () =
 
   expect(submitButton).toBeDisabled()
 
-  expect(mockSavePost).toHaveBeenCalledTimes(1)
   expect(mockSavePost).toHaveBeenCalledWith({
     ...fakePost,
     authorId: fakeUser.id,
   })
+  expect(mockSavePost).toHaveBeenCalledTimes(1)
 
-  await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
-
-  expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {})
+  await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
+  expect(MockRedirect).toHaveBeenCalledTimes(1)
 })
