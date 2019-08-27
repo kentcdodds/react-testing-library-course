@@ -1,0 +1,13 @@
+sudo: false
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
+node_js: '12'
+install: npm install
+script: npm run validate
+after_success: npx codecov@3
+branches:
+  only: master
