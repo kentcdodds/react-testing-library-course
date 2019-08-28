@@ -29,12 +29,13 @@ _Course material for testing React components using react-testing-library_
   react-testing-library
 - `tdd-functionality.js` - TDD the functionality of a React Form with
   react-testing-library
-- `react-router-provider.js` - Test react-router Provider history object in
-  React Component Tests with createMemoryHistory
+- `react-router.js` - Test react-router Provider history object in React
+  Component Tests with createMemoryHistory
 - `redux.js` - Test a redux connected React Component
 - `custom-hook.js` - Test a custom hook
-- `portals.js` - Test React portals with react-testing-library’s `within` API
+- `portals.js` - Test React portals
 - `unmounting.js` - Test Unmounting a React Component with react-testing-library
+- `app.js` - Testing the full application.
 
 > Note: the setup for this project uses kcd-scripts. Don't worry about that. You
 > can learn about how to configure jest properly in the "Configure Jest for

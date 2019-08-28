@@ -77,5 +77,8 @@
   "bugs": {
     "url": "https://github.com/kentcdodds/react-testing-library-course/issues"
   },
-  "homepage": "https://github.com/kentcdodds/react-testing-library-course#readme"
+  "homepage": "https://github.com/kentcdodds/react-testing-library-course#readme",
+  "devDependencies": {
+    "@testing-library/user-event": "^7.0.0"
+  }
 }

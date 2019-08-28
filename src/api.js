@@ -29,4 +29,9 @@ async function reportError() {
   return {success: true}
 }
 
-export {savePost, loadGreeting, reportError}
+async function submitForm() {
+  await sleep(1000)
+  return {success: true}
+}
+
+export {savePost, loadGreeting, reportError, submitForm}
