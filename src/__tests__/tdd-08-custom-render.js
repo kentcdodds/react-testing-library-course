@@ -10,16 +10,10 @@ jest.mock('react-router', () => {
     Redirect: jest.fn(() => null),
   }
 })
-
-jest.mock('../api', () => {
-  return {
-    savePost: jest.fn(() => Promise.resolve()),
-  }
-})
+jest.mock('../api')
 
 afterEach(() => {
-  MockRedirect.mockClear()
-  mockSavePost.mockClear()
+  jest.clearAllMocks()
 })
 
 const postBuilder = build('Post').fields({
@@ -50,6 +44,7 @@ function renderEditor() {
 }
 
 test('renders a form with title, content, tags, and a submit button', async () => {
+  mockSavePost.mockResolvedValueOnce()
   const {submitButton, fakePost, fakeUser} = renderEditor()
   const preDate = Date.now()
 

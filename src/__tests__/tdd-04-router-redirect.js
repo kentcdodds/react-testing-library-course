@@ -10,18 +10,14 @@ jest.mock('react-router', () => {
   }
 })
 
-jest.mock('../api', () => {
-  return {
-    savePost: jest.fn(() => Promise.resolve()),
-  }
-})
+jest.mock('../api')
 
 afterEach(() => {
-  MockRedirect.mockClear()
-  mockSavePost.mockClear()
+  jest.clearAllMocks()
 })
 
 test('renders a form with title, content, tags, and a submit button', async () => {
+  mockSavePost.mockResolvedValueOnce()
   const fakeUser = {id: 'user-1'}
   const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
   const fakePost = {
