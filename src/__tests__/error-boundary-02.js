@@ -3,11 +3,7 @@ import {render, fireEvent} from '@testing-library/react'
 import {reportError as mockReportError} from '../api'
 import {ErrorBoundary} from '../error-boundary'
 
-jest.mock('../api', () => {
-  return {
-    reportError: jest.fn(() => Promise.resolve({success: true})),
-  }
-})
+jest.mock('../api')
 
 beforeEach(() => {
   // when the error's thrown a bunch of console.errors are called even though
@@ -17,6 +13,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  jest.clearAllMocks()
   console.error.mockRestore()
 })
 
@@ -29,7 +26,8 @@ function Bomb({shouldThrow}) {
 }
 
 test('calls reportError and renders that there was a problem', () => {
-  const {container, rerender, getByText} = render(
+  mockReportError.mockResolvedValueOnce({success: true})
+  const {rerender, getByText, queryByText, getByRole, queryByRole} = render(
     <ErrorBoundary>
       <Bomb />
     </ErrorBoundary>,
@@ -43,7 +41,9 @@ test('calls reportError and renders that there was a problem', () => {
   expect(mockReportError).toHaveBeenCalledWith(error, info)
   expect(mockReportError).toHaveBeenCalledTimes(1)
 
-  expect(container).toHaveTextContent('There was a problem')
+  expect(getByRole('alert').textContent).toMatchInlineSnapshot(
+    `"There was a problem."`,
+  )
 
   // by mocking out console.error we may inadvertantly be missing out on logs
   // in the future that could be important, so let's reduce that liklihood by
@@ -59,5 +59,6 @@ test('calls reportError and renders that there was a problem', () => {
 
   expect(mockReportError).not.toHaveBeenCalled()
   expect(console.error).not.toHaveBeenCalled()
-  expect(container).not.toHaveTextContent('There was a problem')
+  expect(queryByRole('alert')).not.toBeInTheDocument()
+  expect(queryByText(/try again/i)).not.toBeInTheDocument()
 })

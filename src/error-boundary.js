@@ -11,7 +11,7 @@ class ErrorBoundary extends React.Component {
   render() {
     return this.state.hasError ? (
       <div>
-        <div>There was a problem.</div>{' '}
+        <div role="alert">There was a problem.</div>{' '}
         <button onClick={this.tryAgain}>Try again?</button>
       </div>
     ) : (

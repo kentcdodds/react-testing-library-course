@@ -27,7 +27,7 @@ function Bomb({shouldThrow}) {
 
 test('calls reportError and renders that there was a problem', () => {
   mockReportError.mockResolvedValueOnce({success: true})
-  const {container, rerender, getByText} = render(
+  const {rerender, getByText, queryByText, getByRole, queryByRole} = render(
     <ErrorBoundary>
       <Bomb />
     </ErrorBoundary>,
@@ -44,7 +44,9 @@ test('calls reportError and renders that there was a problem', () => {
   expect(mockReportError).toHaveBeenCalledWith(error, info)
   expect(mockReportError).toHaveBeenCalledTimes(1)
 
-  expect(container).toHaveTextContent('There was a problem')
+  expect(getByRole('alert').textContent).toMatchInlineSnapshot(
+    `"There was a problem."`,
+  )
 
   // by mocking out console.error we may inadvertantly be missing out on logs
   // in the future that could be important, so let's reduce that liklihood by
@@ -64,5 +66,6 @@ test('calls reportError and renders that there was a problem', () => {
 
   expect(mockReportError).not.toHaveBeenCalled()
   expect(console.error).not.toHaveBeenCalled()
-  expect(container).not.toHaveTextContent('There was a problem')
+  expect(queryByRole('alert')).not.toBeInTheDocument()
+  expect(queryByText(/try again/i)).not.toBeInTheDocument()
 })
