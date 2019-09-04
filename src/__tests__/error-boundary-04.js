@@ -5,16 +5,16 @@ import {ErrorBoundary} from '../error-boundary'
 
 jest.mock('../api')
 
-beforeEach(() => {
-  // when the error's thrown a bunch of console.errors are called even though
-  // the error boundary handles the error. This makes the test output noisy,
-  // so we'll mock out console.error
+beforeAll(() => {
   jest.spyOn(console, 'error').mockImplementation(() => {})
+})
+
+afterAll(() => {
+  console.error.mockRestore()
 })
 
 afterEach(() => {
   jest.clearAllMocks()
-  console.error.mockRestore()
 })
 
 function Bomb({shouldThrow}) {
@@ -28,9 +28,7 @@ function Bomb({shouldThrow}) {
 test('calls reportError and renders that there was a problem', () => {
   mockReportError.mockResolvedValueOnce({success: true})
   const {rerender, getByText, queryByText, getByRole, queryByRole} = render(
-    <ErrorBoundary>
-      <Bomb />
-    </ErrorBoundary>,
+    <Bomb />,
     {wrapper: ErrorBoundary},
   )
 
@@ -41,20 +39,17 @@ test('calls reportError and renders that there was a problem', () => {
   expect(mockReportError).toHaveBeenCalledWith(error, info)
   expect(mockReportError).toHaveBeenCalledTimes(1)
 
-  // by mocking out console.error we may inadvertantly be missing out on logs
-  // in the future that could be important, so let's reduce that liklihood by
-  // adding an assertion for how frequently console.error is called.
   expect(console.error).toHaveBeenCalledTimes(2)
 
   expect(getByRole('alert').textContent).toMatchInlineSnapshot(
     `"There was a problem."`,
   )
 
-  // ensure the user can recover from errors
   console.error.mockClear()
   mockReportError.mockClear()
 
   rerender(<Bomb />)
+
   fireEvent.click(getByText(/try again/i))
 
   expect(mockReportError).not.toHaveBeenCalled()
