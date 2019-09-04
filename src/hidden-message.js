@@ -1,11 +1,9 @@
 import React from 'react'
 import {CSSTransition} from 'react-transition-group'
 
-function Fade({children, ...props}) {
+function Fade(props) {
   return (
-    <CSSTransition {...props} timeout={1000} className="fade">
-      {children}
-    </CSSTransition>
+    <CSSTransition unmountOnExit timeout={1000} classNames="fade" {...props} />
   )
 }
 
