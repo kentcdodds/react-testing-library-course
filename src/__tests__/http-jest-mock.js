@@ -3,15 +3,11 @@ import {render, fireEvent, waitForDomChange} from '@testing-library/react'
 import {loadGreeting as mockLoadGreeting} from '../api'
 import {GreetingLoader} from '../greeting-loader-01-mocking'
 
-jest.mock('../api', () => {
-  return {
-    loadGreeting: jest.fn(subject =>
-      Promise.resolve({data: {greeting: `Hi ${subject}`}}),
-    ),
-  }
-})
+jest.mock('../api')
 
 test('loads greetings on click', async () => {
+  const testGreeting = 'TEST_GREETING'
+  mockLoadGreeting.mockResolvedValueOnce({data: {greeting: testGreeting}})
   const {getByLabelText, getByText} = render(<GreetingLoader />)
   const nameInput = getByLabelText(/name/i)
   const loadButton = getByText(/load/i)
@@ -20,6 +16,6 @@ test('loads greetings on click', async () => {
   expect(mockLoadGreeting).toHaveBeenCalledWith('Mary')
   expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
   await waitForDomChange(() =>
-    expect(getByLabelText('greeting')).toHaveTextContent(`Hi Mary`),
+    expect(getByLabelText('greeting')).toHaveTextContent(testGreeting),
   )
 })
