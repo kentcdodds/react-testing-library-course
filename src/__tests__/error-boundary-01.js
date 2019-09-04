@@ -3,11 +3,7 @@ import {render, fireEvent} from '@testing-library/react'
 import {reportError as mockReportError} from '../api'
 import {ErrorBoundary} from '../error-boundary'
 
-jest.mock('../api', () => {
-  return {
-    reportError: jest.fn(() => Promise.resolve({success: true})),
-  }
-})
+jest.mock('../api')
 
 beforeEach(() => {
   // when the error's thrown a bunch of console.errors are called even though
@@ -17,6 +13,7 @@ beforeEach(() => {
 })
 
 afterEach(() => {
+  jest.clearAllMocks()
   console.error.mockRestore()
 })
 
@@ -29,6 +26,7 @@ function Bomb({shouldThrow}) {
 }
 
 test('calls reportError and renders that there was a problem', () => {
+  mockReportError.mockResolvedValueOnce({success: true})
   const {container, rerender, getByText} = render(
     <ErrorBoundary>
       <Bomb />
