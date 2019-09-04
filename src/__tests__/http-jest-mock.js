@@ -12,7 +12,7 @@ jest.mock('../api', () => {
 })
 
 test('loads greetings on click', async () => {
-  const {getByLabelText, getByText, getByTestId} = render(<GreetingLoader />)
+  const {getByLabelText, getByText} = render(<GreetingLoader />)
   const nameInput = getByLabelText(/name/i)
   const loadButton = getByText(/load/i)
   nameInput.value = 'Mary'
@@ -20,6 +20,6 @@ test('loads greetings on click', async () => {
   expect(mockLoadGreeting).toHaveBeenCalledWith('Mary')
   expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
   await waitForDomChange(() =>
-    expect(getByTestId('greeting')).toHaveTextContent(`Hi Mary`),
+    expect(getByLabelText('greeting')).toHaveTextContent(`Hi Mary`),
   )
 })

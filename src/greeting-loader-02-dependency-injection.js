@@ -13,7 +13,7 @@ function GreetingLoader({loadGreeting = api.loadGreeting}) {
       <label htmlFor="name">Name</label>
       <input id="name" />
       <button type="submit">Load Greeting</button>
-      <div data-testid="greeting">{greeting}</div>
+      <div aria-label="greeting">{greeting}</div>
     </form>
   )
 }

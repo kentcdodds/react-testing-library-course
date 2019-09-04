@@ -31,15 +31,15 @@ function render(
 }
 
 test('can increment the value', () => {
-  const {getByTestId, getByText} = render(<Counter />)
+  const {getByLabelText, getByText} = render(<Counter />)
   fireEvent.click(getByText('+'))
-  expect(getByTestId('count-value')).toHaveTextContent('1')
+  expect(getByLabelText(/count/i)).toHaveTextContent('1')
 })
 
 test('can decrement the value', () => {
-  const {getByTestId, getByText} = render(<Counter />, {
+  const {getByLabelText, getByText} = render(<Counter />, {
     initialState: {count: 3},
   })
   fireEvent.click(getByText('-'))
-  expect(getByTestId('count-value')).toHaveTextContent('2')
+  expect(getByLabelText(/count/i)).toHaveTextContent('2')
 })

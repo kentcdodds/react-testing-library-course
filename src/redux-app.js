@@ -13,7 +13,7 @@ function Counter() {
       <h2>Counter</h2>
       <div>
         <button onClick={decrement}>-</button>
-        <span data-testid="count-value">{count}</span>
+        <span aria-label="count">{count}</span>
         <button onClick={increment}>+</button>
       </div>
     </div>

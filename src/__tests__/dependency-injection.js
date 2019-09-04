@@ -6,7 +6,7 @@ test('loads greetings on click', async () => {
   const mockLoadGreeting = jest.fn(subject =>
     Promise.resolve({data: {greeting: `Hi ${subject}`}}),
   )
-  const {getByLabelText, getByText, getByTestId} = render(
+  const {getByLabelText, getByText} = render(
     <GreetingLoader loadGreeting={mockLoadGreeting} />,
   )
   const nameInput = getByLabelText(/name/i)
@@ -16,6 +16,6 @@ test('loads greetings on click', async () => {
   expect(mockLoadGreeting).toHaveBeenCalledWith('Mary')
   expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
   await waitForDomChange(() =>
-    expect(getByTestId('greeting')).toHaveTextContent(`Hi Mary`),
+    expect(getByLabelText('greeting')).toHaveTextContent(`Hi Mary`),
   )
 })
