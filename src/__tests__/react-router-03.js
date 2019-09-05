@@ -31,9 +31,9 @@ function render(
 
 test('main renders about and home and I can navigate to those pages', () => {
   const {getByRole, getByText} = render(<Main />)
-  expect(getByRole('heading')).toHaveTextContent(/Home/)
+  expect(getByRole('heading')).toHaveTextContent(/home/i)
   fireEvent.click(getByText(/about/i))
-  expect(getByRole('heading')).toHaveTextContent(/About/)
+  expect(getByRole('heading')).toHaveTextContent(/about/i)
   // you can use the `within` function to get queries for elements within the
   // about screen
 })
@@ -42,5 +42,5 @@ test('landing on a bad page shows no match component', () => {
   const {getByRole} = render(<Main />, {
     route: '/something-that-does-not-match',
   })
-  expect(getByRole('heading')).toHaveTextContent(/404/)
+  expect(getByRole('heading')).toHaveTextContent(/404/i)
 })
