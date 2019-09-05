@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, fireEvent, wait, waitForElement} from '@testing-library/react'
+import {render, fireEvent, wait} from '@testing-library/react'
 import {build, fake, sequence} from 'test-data-bot'
 import {Redirect as MockRedirect} from 'react-router'
 import {savePost as mockSavePost} from '../api'
@@ -61,7 +61,7 @@ test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
   const fakeUser = userBuilder()
-  const {getByLabelText, getByText, getByRole} = render(
+  const {getByLabelText, getByText, findByRole} = render(
     <Editor user={fakeUser} />,
   )
   const fakePost = postBuilder()
@@ -73,7 +73,7 @@ test('renders an error message from the server', async () => {
 
   fireEvent.click(submitButton)
 
-  const postError = await waitForElement(() => getByRole('alert'))
+  const postError = await findByRole('alert')
   expect(postError).toHaveTextContent(testError)
   expect(submitButton).not.toBeDisabled()
 })

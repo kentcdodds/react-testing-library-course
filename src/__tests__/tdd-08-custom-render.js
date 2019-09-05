@@ -1,5 +1,5 @@
 import React from 'react'
-import {render, fireEvent, wait, waitForElement} from '@testing-library/react'
+import {render, fireEvent, wait} from '@testing-library/react'
 import {build, fake, sequence} from 'test-data-bot'
 import {Redirect as MockRedirect} from 'react-router'
 import {savePost as mockSavePost} from '../api'
@@ -70,11 +70,11 @@ test('renders a form with title, content, tags, and a submit button', async () =
 test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
-  const {submitButton, getByRole} = renderEditor()
+  const {submitButton, findByRole} = renderEditor()
 
   fireEvent.click(submitButton)
 
-  const postError = await waitForElement(() => getByRole('alert'))
+  const postError = await findByRole('alert')
   expect(postError).toHaveTextContent(testError)
   expect(submitButton).not.toBeDisabled()
 })
