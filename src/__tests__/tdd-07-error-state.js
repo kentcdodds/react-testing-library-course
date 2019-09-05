@@ -61,14 +61,7 @@ test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
   const fakeUser = userBuilder()
-  const {getByLabelText, getByText, findByRole} = render(
-    <Editor user={fakeUser} />,
-  )
-  const fakePost = postBuilder()
-
-  getByLabelText(/title/i).value = fakePost.title
-  getByLabelText(/content/i).value = fakePost.content
-  getByLabelText(/tags/i).value = fakePost.tags.join(', ')
+  const {getByText, findByRole} = render(<Editor user={fakeUser} />)
   const submitButton = getByText(/submit/i)
 
   fireEvent.click(submitButton)
