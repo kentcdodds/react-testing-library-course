@@ -2,7 +2,8 @@ import React from 'react'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
 import {render as rtlRender, fireEvent} from '@testing-library/react'
-import {reducer, Counter} from '../redux-app'
+import {Counter} from '../redux-counter'
+import {reducer} from '../redux-reducer'
 
 // this is a handy function that I normally make available for all my tests
 // that deal with connected components.
