@@ -48,5 +48,4 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(date).toBeLessThanOrEqual(postDate)
 
   await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
-  expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {})
 })

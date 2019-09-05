@@ -41,5 +41,4 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(mockSavePost).toHaveBeenCalledTimes(1)
 
   await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
-  expect(MockRedirect).toHaveBeenCalledTimes(1)
 })

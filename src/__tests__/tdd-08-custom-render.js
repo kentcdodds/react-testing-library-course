@@ -65,7 +65,6 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(date).toBeLessThanOrEqual(postDate)
 
   await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
-  expect(MockRedirect).toHaveBeenCalledTimes(1)
 })
 
 test('renders an error message from the server', async () => {
