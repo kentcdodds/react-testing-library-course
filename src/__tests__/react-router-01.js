@@ -11,7 +11,7 @@ test('main renders about and home and I can navigate to those pages', () => {
       <Main />
     </Router>,
   )
-  expect(getByRole('heading')).toHaveTextContent(/Home/)
+  expect(getByRole('heading')).toHaveTextContent(/home/i)
   fireEvent.click(getByText(/about/i))
-  expect(getByRole('heading')).toHaveTextContent(/About/)
+  expect(getByRole('heading')).toHaveTextContent(/about/i)
 })
