@@ -2,7 +2,7 @@ import React from 'react'
 import {render} from '@testing-library/react'
 import user from '@testing-library/user-event'
 import {submitForm as mockSubmitForm} from '../api'
-import App from '../app'
+import App from '../app-reach-router'
 
 jest.mock('../api')
 
