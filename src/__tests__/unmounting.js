@@ -1,5 +1,5 @@
 import React from 'react'
-import {render} from '@testing-library/react'
+import {render, act} from '@testing-library/react'
 import {Countdown} from '../countdown'
 
 beforeAll(() => {
@@ -10,7 +10,7 @@ afterAll(() => {
   console.error.mockRestore()
 })
 
-beforeEach(() => {
+afterEach(() => {
   jest.clearAllMocks()
   jest.useRealTimers()
 })
@@ -19,6 +19,6 @@ test('does not attempt to set state when unmounted (to prevent memory leaks)', (
   jest.useFakeTimers()
   const {unmount} = render(<Countdown />)
   unmount()
-  jest.runOnlyPendingTimers()
+  act(() => jest.runOnlyPendingTimers())
   expect(console.error).not.toHaveBeenCalled()
 })
