@@ -3,15 +3,15 @@ import {render, act} from '@testing-library/react'
 import {useCounter} from '../use-counter'
 
 test('exposes the count and increment/decrement functions', () => {
-  const result = {}
+  let result
   function TestComponent() {
-    result.current = useCounter()
+    result = useCounter()
     return null
   }
   render(<TestComponent />)
-  expect(result.current.count).toBe(0)
-  act(() => result.current.increment())
-  expect(result.current.count).toBe(1)
-  act(() => result.current.decrement())
-  expect(result.current.count).toBe(0)
+  expect(result.count).toBe(0)
+  act(() => result.increment())
+  expect(result.count).toBe(1)
+  act(() => result.decrement())
+  expect(result.count).toBe(0)
 })
