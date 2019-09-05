@@ -12,7 +12,7 @@ if (!modalRoot) {
 // you need to think about accessibility and styling.
 // Look into: https://ui.reach.tech/dialog
 function Modal({children}) {
-  const el = React.useRef(document.createElement('el'))
+  const el = React.useRef(document.createElement('div'))
   React.useLayoutEffect(() => {
     const currentEl = el.current
     modalRoot.appendChild(currentEl)

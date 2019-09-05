@@ -1,12 +1,13 @@
 import React from 'react'
-import {render} from '@testing-library/react'
+import {render, within} from '@testing-library/react'
 import {Modal} from '../modal'
 
 test('modal shows the children', () => {
-  const {getByText} = render(
+  render(
     <Modal>
-      <div>test</div>
+      <div data-testid="test" />
     </Modal>,
   )
-  expect(getByText('test')).toBeInTheDocument()
+  const {getByTestId} = within(document.getElementById('modal-root'))
+  expect(getByTestId('test')).toBeInTheDocument()
 })
