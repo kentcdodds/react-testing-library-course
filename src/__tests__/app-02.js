@@ -1,12 +1,12 @@
 import React from 'react'
 import {render, fireEvent} from '@testing-library/react'
-import {submitForm} from '../api'
+import {submitForm as mockSubmitForm} from '../api'
 import App from '../app'
 
 jest.mock('../api')
 
 test('Can fill out a form across multiple pages', async () => {
-  submitForm.mockResolvedValueOnce({success: true})
+  mockSubmitForm.mockResolvedValueOnce({success: true})
   const testData = {food: 'test food', drink: 'test drink'}
   const {findByLabelText, findByText} = render(<App />)
 
@@ -27,8 +27,10 @@ test('Can fill out a form across multiple pages', async () => {
 
   fireEvent.click(await findByText(/confirm/i, {selector: 'button'}))
 
-  expect(await findByText(/home/i)).toHaveAttribute('href', '/')
+  expect(mockSubmitForm).toHaveBeenCalledWith(testData)
+  expect(mockSubmitForm).toHaveBeenCalledTimes(1)
+
   fireEvent.click(await findByText(/home/i))
 
-  await findByText(/welcome home/i)
+  expect(await findByText(/welcome home/i)).toBeInTheDocument()
 })
