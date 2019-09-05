@@ -25,7 +25,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
     content: 'Test content',
     tags: ['tag1', 'tag2'],
   }
-  const preDate = Date.now()
+  const preDate = new Date().getTime()
 
   getByLabelText(/title/i).value = fakePost.title
   getByLabelText(/content/i).value = fakePost.content
@@ -43,7 +43,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
   })
   expect(mockSavePost).toHaveBeenCalledTimes(1)
 
-  const postDate = Date.now()
+  const postDate = new Date().getTime()
   const date = new Date(mockSavePost.mock.calls[0][0].date).getTime()
   expect(date).toBeGreaterThanOrEqual(preDate)
   expect(date).toBeLessThanOrEqual(postDate)

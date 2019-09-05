@@ -31,7 +31,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
   const fakeUser = userBuilder()
   const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
   const fakePost = postBuilder()
-  const preDate = Date.now()
+  const preDate = new Date().getTime()
 
   getByLabelText(/title/i).value = fakePost.title
   getByLabelText(/content/i).value = fakePost.content
@@ -49,7 +49,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
   })
   expect(mockSavePost).toHaveBeenCalledTimes(1)
 
-  const postDate = Date.now()
+  const postDate = new Date().getTime()
   const date = new Date(mockSavePost.mock.calls[0][0].date).getTime()
   expect(date).toBeGreaterThanOrEqual(preDate)
   expect(date).toBeLessThanOrEqual(postDate)

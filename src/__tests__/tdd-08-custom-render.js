@@ -46,7 +46,7 @@ function renderEditor() {
 test('renders a form with title, content, tags, and a submit button', async () => {
   mockSavePost.mockResolvedValueOnce()
   const {submitButton, fakePost, fakeUser} = renderEditor()
-  const preDate = Date.now()
+  const preDate = new Date().getTime()
 
   fireEvent.click(submitButton)
 
@@ -59,7 +59,7 @@ test('renders a form with title, content, tags, and a submit button', async () =
   })
   expect(mockSavePost).toHaveBeenCalledTimes(1)
 
-  const postDate = Date.now()
+  const postDate = new Date().getTime()
   const date = new Date(mockSavePost.mock.calls[0][0].date).getTime()
   expect(date).toBeGreaterThanOrEqual(preDate)
   expect(date).toBeLessThanOrEqual(postDate)
