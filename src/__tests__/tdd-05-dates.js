@@ -9,6 +9,7 @@ jest.mock('react-router', () => {
     Redirect: jest.fn(() => null),
   }
 })
+
 jest.mock('../api')
 
 afterEach(() => {
@@ -47,5 +48,5 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(date).toBeGreaterThanOrEqual(preDate)
   expect(date).toBeLessThanOrEqual(postDate)
 
-  await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
+  await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
 })
