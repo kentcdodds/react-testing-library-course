@@ -1,3 +1,9 @@
+<p align="center">
+<a href="https://codefund.io/properties/499/visit-sponsor">
+<img src="https://codefund.io/properties/499/sponsor" />
+</a>
+</p>
+
 # react-testing-library-course
 
 _Course material for testing React components using react-testing-library_
