@@ -46,3 +46,8 @@ beforeEach(() => {
 afterEach(() => {
   console.error.mockRestore()
 })
+
+/*
+eslint
+  jest/prefer-hooks-on-top: off
+*/
