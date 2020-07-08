@@ -1,5 +1,5 @@
 <h1 align="center">
-  Test React Components with Jest and React Testing Library
+  <a href="https://testingjavascript.com/courses/test-react-components-with-jest-and-react-testing-library-0bbe87">Test React Components with Jest and React Testing Library</a>
 </h1>
 
 <div align="center">
