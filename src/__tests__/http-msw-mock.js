@@ -1,22 +1,28 @@
+import 'whatwg-fetch'
 import React from 'react'
 import {render, screen, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import {loadGreeting as mockLoadGreeting} from '../api'
+import {rest} from 'msw'
+import {setupServer} from 'msw/node'
 import {GreetingLoader} from '../greeting-loader-01-mocking'
 
-jest.mock('../api')
+const server = setupServer(
+  rest.post('/greeting', (req, res, ctx) => {
+    return res(ctx.json({data: {greeting: `Hello ${req.body.subject}`}}))
+  }),
+)
+
+beforeAll(() => server.listen({onUnhandledRequest: 'error'}))
+afterAll(() => server.close())
+afterEach(() => server.resetHandlers())
 
 test('loads greetings on click', async () => {
-  const testGreeting = 'TEST_GREETING'
-  mockLoadGreeting.mockResolvedValueOnce({data: {greeting: testGreeting}})
   render(<GreetingLoader />)
   const nameInput = screen.getByLabelText(/name/i)
   const loadButton = screen.getByText(/load/i)
   userEvent.type(nameInput, 'Mary')
   userEvent.click(loadButton)
-  expect(mockLoadGreeting).toHaveBeenCalledWith('Mary')
-  expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
   await waitFor(() =>
-    expect(screen.getByLabelText(/greeting/i)).toHaveTextContent(testGreeting),
+    expect(screen.getByLabelText(/greeting/i)).toHaveTextContent('Hello Mary'),
   )
 })

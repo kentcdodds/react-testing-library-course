@@ -1,5 +1,6 @@
 import React from 'react'
-import {render, fireEvent, wait} from '@testing-library/react'
+import {render, screen, waitFor} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {build, fake, sequence} from 'test-data-bot'
 import {Redirect as MockRedirect} from 'react-router'
 import {savePost as mockSavePost} from '../api'
@@ -17,28 +18,28 @@ afterEach(() => {
 })
 
 const postBuilder = build('Post').fields({
-  title: fake(f => f.lorem.words()),
-  content: fake(f => f.lorem.paragraphs().replace(/\r/g, '')),
-  tags: fake(f => [f.lorem.word(), f.lorem.word(), f.lorem.word()]),
+  title: fake((f) => f.lorem.words()),
+  content: fake((f) => f.lorem.paragraphs().replace(/\r/g, '')),
+  tags: fake((f) => [f.lorem.word(), f.lorem.word(), f.lorem.word()]),
 })
 
 const userBuilder = build('User').fields({
-  id: sequence(s => `user-${s}`),
+  id: sequence((s) => `user-${s}`),
 })
 
 test('renders a form with title, content, tags, and a submit button', async () => {
   mockSavePost.mockResolvedValueOnce()
   const fakeUser = userBuilder()
-  const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
+  render(<Editor user={fakeUser} />)
   const fakePost = postBuilder()
   const preDate = new Date().getTime()
 
-  getByLabelText(/title/i).value = fakePost.title
-  getByLabelText(/content/i).value = fakePost.content
-  getByLabelText(/tags/i).value = fakePost.tags.join(', ')
-  const submitButton = getByText(/submit/i)
+  screen.getByLabelText(/title/i).value = fakePost.title
+  screen.getByLabelText(/content/i).value = fakePost.content
+  screen.getByLabelText(/tags/i).value = fakePost.tags.join(', ')
+  const submitButton = screen.getByText(/submit/i)
 
-  fireEvent.click(submitButton)
+  userEvent.click(submitButton)
 
   expect(submitButton).toBeDisabled()
 
@@ -54,19 +55,19 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(date).toBeGreaterThanOrEqual(preDate)
   expect(date).toBeLessThanOrEqual(postDate)
 
-  await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
+  await waitFor(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
 })
 
 test('renders an error message from the server', async () => {
   const testError = 'test error'
   mockSavePost.mockRejectedValueOnce({data: {error: testError}})
   const fakeUser = userBuilder()
-  const {getByText, findByRole} = render(<Editor user={fakeUser} />)
-  const submitButton = getByText(/submit/i)
+  render(<Editor user={fakeUser} />)
+  const submitButton = screen.getByText(/submit/i)
 
-  fireEvent.click(submitButton)
+  userEvent.click(submitButton)
 
-  const postError = await findByRole('alert')
+  const postError = await screen.findByRole('alert')
   expect(postError).toHaveTextContent(testError)
-  expect(submitButton).not.toBeDisabled()
+  expect(submitButton).toBeEnabled()
 })

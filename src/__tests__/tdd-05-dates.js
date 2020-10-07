@@ -1,5 +1,6 @@
 import React from 'react'
-import {render, fireEvent, wait} from '@testing-library/react'
+import {render, screen, waitFor} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {Redirect as MockRedirect} from 'react-router'
 import {savePost as mockSavePost} from '../api'
 import {Editor} from '../post-editor-05-dates'
@@ -19,7 +20,7 @@ afterEach(() => {
 test('renders a form with title, content, tags, and a submit button', async () => {
   mockSavePost.mockResolvedValueOnce()
   const fakeUser = {id: 'user-1'}
-  const {getByLabelText, getByText} = render(<Editor user={fakeUser} />)
+  render(<Editor user={fakeUser} />)
   const fakePost = {
     title: 'Test Title',
     content: 'Test content',
@@ -27,12 +28,12 @@ test('renders a form with title, content, tags, and a submit button', async () =
   }
   const preDate = new Date().getTime()
 
-  getByLabelText(/title/i).value = fakePost.title
-  getByLabelText(/content/i).value = fakePost.content
-  getByLabelText(/tags/i).value = fakePost.tags.join(', ')
-  const submitButton = getByText(/submit/i)
+  screen.getByLabelText(/title/i).value = fakePost.title
+  screen.getByLabelText(/content/i).value = fakePost.content
+  screen.getByLabelText(/tags/i).value = fakePost.tags.join(', ')
+  const submitButton = screen.getByText(/submit/i)
 
-  fireEvent.click(submitButton)
+  userEvent.click(submitButton)
 
   expect(submitButton).toBeDisabled()
 
@@ -48,5 +49,5 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(date).toBeGreaterThanOrEqual(preDate)
   expect(date).toBeLessThanOrEqual(postDate)
 
-  await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
+  await waitFor(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
 })

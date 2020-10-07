@@ -1,6 +1,9 @@
 import React from 'react'
-import {render} from '@testing-library/react'
-import user from '@testing-library/user-event'
+import {render, screen} from '@testing-library/react'
+// NOTE: in the videos I called this "user" but I think
+// it makes more sense to call it "userEvent"
+// (you'll run into fewer "variable shadowing" problems) that way.
+import userEvent from '@testing-library/user-event'
 import {submitForm as mockSubmitForm} from '../api'
 import App from '../app-reach-router'
 
@@ -9,25 +12,27 @@ jest.mock('../api')
 test('Can fill out a form across multiple pages', async () => {
   mockSubmitForm.mockResolvedValueOnce({success: true})
   const testData = {food: 'test food', drink: 'test drink'}
-  const {findByLabelText, findByText} = render(<App />)
+  render(<App />)
 
-  user.click(await findByText(/fill.*form/i))
+  userEvent.click(await screen.findByText(/fill.*form/i))
 
-  user.type(await findByLabelText(/food/i), testData.food)
-  user.click(await findByText(/next/i))
+  userEvent.type(await screen.findByLabelText(/food/i), testData.food)
+  userEvent.click(await screen.findByText(/next/i))
 
-  user.type(await findByLabelText(/drink/i), testData.drink)
-  user.click(await findByText(/review/i))
+  userEvent.type(await screen.findByLabelText(/drink/i), testData.drink)
+  userEvent.click(await screen.findByText(/review/i))
 
-  expect(await findByLabelText(/food/i)).toHaveTextContent(testData.food)
-  expect(await findByLabelText(/drink/i)).toHaveTextContent(testData.drink)
+  expect(await screen.findByLabelText(/food/i)).toHaveTextContent(testData.food)
+  expect(await screen.findByLabelText(/drink/i)).toHaveTextContent(
+    testData.drink,
+  )
 
-  user.click(await findByText(/confirm/i, {selector: 'button'}))
+  userEvent.click(await screen.findByText(/confirm/i, {selector: 'button'}))
 
   expect(mockSubmitForm).toHaveBeenCalledWith(testData)
   expect(mockSubmitForm).toHaveBeenCalledTimes(1)
 
-  user.click(await findByText(/home/i))
+  userEvent.click(await screen.findByText(/home/i))
 
-  expect(await findByText(/welcome home/i)).toBeInTheDocument()
+  expect(await screen.findByText(/welcome home/i)).toBeInTheDocument()
 })

@@ -1,7 +1,8 @@
 import React from 'react'
 import {createStore} from 'redux'
 import {Provider} from 'react-redux'
-import {render as rtlRender, fireEvent} from '@testing-library/react'
+import {render as rtlRender, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {Counter} from '../redux-counter'
 import {reducer} from '../redux-reducer'
 
@@ -32,15 +33,15 @@ function render(
 }
 
 test('can increment the value', () => {
-  const {getByLabelText, getByText} = render(<Counter />)
-  fireEvent.click(getByText('+'))
-  expect(getByLabelText(/count/i)).toHaveTextContent('1')
+  render(<Counter />)
+  userEvent.click(screen.getByText('+'))
+  expect(screen.getByLabelText(/count/i)).toHaveTextContent('1')
 })
 
 test('can decrement the value', () => {
-  const {getByLabelText, getByText} = render(<Counter />, {
+  render(<Counter />, {
     initialState: {count: 3},
   })
-  fireEvent.click(getByText('-'))
-  expect(getByLabelText(/count/i)).toHaveTextContent('2')
+  userEvent.click(screen.getByText('-'))
+  expect(screen.getByLabelText(/count/i)).toHaveTextContent('2')
 })

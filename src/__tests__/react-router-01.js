@@ -1,17 +1,17 @@
 import React from 'react'
-import {Router} from 'react-router-dom'
-import {createMemoryHistory} from 'history'
-import {render, fireEvent} from '@testing-library/react'
+import {BrowserRouter} from 'react-router-dom'
+import {render, screen} from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import {Main} from '../main'
 
 test('main renders about and home and I can navigate to those pages', () => {
-  const history = createMemoryHistory({initialEntries: ['/']})
-  const {getByRole, getByText} = render(
-    <Router history={history}>
+  window.history.pushState({}, 'Test page', '/')
+  render(
+    <BrowserRouter>
       <Main />
-    </Router>,
+    </BrowserRouter>,
   )
-  expect(getByRole('heading')).toHaveTextContent(/home/i)
-  fireEvent.click(getByText(/about/i))
-  expect(getByRole('heading')).toHaveTextContent(/about/i)
+  expect(screen.getByRole('heading')).toHaveTextContent(/home/i)
+  userEvent.click(screen.getByText(/about/i))
+  expect(screen.getByRole('heading')).toHaveTextContent(/about/i)
 })

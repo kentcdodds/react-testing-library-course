@@ -1,37 +1,31 @@
-// this is just a fake module to simulate interacting with a server
+function client(
+  endpoint,
+  {data, token, headers: customHeaders, ...customConfig} = {},
+) {
+  const config = {
+    method: data ? 'POST' : 'GET',
+    body: data ? JSON.stringify(data) : undefined,
+    headers: {
+      Authorization: token ? `Bearer ${token}` : undefined,
+      'Content-Type': data ? 'application/json' : undefined,
+      ...customHeaders,
+    },
+    ...customConfig,
+  }
 
-// simulate the network request time...
-const sleep = time =>
-  new Promise(resolve => {
-    setTimeout(resolve, time)
+  return window.fetch(`/${endpoint}`, config).then(async (response) => {
+    const responseData = await response.json()
+    if (response.ok) {
+      return responseData
+    } else {
+      return Promise.reject(responseData)
+    }
   })
-
-async function savePost(postData) {
-  await sleep(1000)
-  return {data: {post: postData}}
 }
 
-const greetings = ['Hello', 'Hi', 'Hey there', `What's up`, 'Howdy', `G'day`]
-
-async function loadGreeting(subject) {
-  return {data: {greeting: `${await fetchRandomGreeting()} ${subject}`}}
-}
-
-async function fetchRandomGreeting() {
-  await sleep(1000)
-  return greetings[Math.floor(Math.random() * greetings.length)]
-}
-
-// a fire-and-forget function to report errors
-// for componentDidCatch
-async function reportError() {
-  await sleep(1000)
-  return {success: true}
-}
-
-async function submitForm() {
-  await sleep(1000)
-  return {success: true}
-}
+const savePost = (postData) => client(`post/${postData.id}`, {data: postData})
+const loadGreeting = (subject) => client(`greeting`, {data: {subject}})
+const reportError = (data) => client(`error`, {data})
+const submitForm = (data) => client(`form`, {data})
 
 export {savePost, loadGreeting, reportError, submitForm}

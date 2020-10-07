@@ -44,7 +44,7 @@ function Page1() {
     <>
       <h2>Page 1</h2>
       <form
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault()
           navigate('/page-2')
         }}
@@ -53,7 +53,7 @@ function Page1() {
         <input
           id="food"
           value={form.food}
-          onChange={e => setFormValues({food: e.target.value})}
+          onChange={(e) => setFormValues({food: e.target.value})}
         />
       </form>
       <Link to="/">Go Home</Link> | <Link to="/page-2">Next</Link>
@@ -67,7 +67,7 @@ function Page2() {
     <>
       <h2>Page 2</h2>
       <form
-        onSubmit={e => {
+        onSubmit={(e) => {
           e.preventDefault()
           navigate('/confirm')
         }}
@@ -76,7 +76,7 @@ function Page2() {
         <input
           id="drink"
           value={form.drink}
-          onChange={e => setFormValues({drink: e.target.value})}
+          onChange={(e) => setFormValues({drink: e.target.value})}
         />
       </form>
       <Link to="/page-1">Go Back</Link> | <Link to="/confirm">Review</Link>
@@ -92,7 +92,7 @@ function Confirm() {
         resetForm()
         navigate('/success')
       },
-      error => {
+      (error) => {
         navigate('/error', {state: {error}})
       },
     )
@@ -159,3 +159,8 @@ function App() {
 }
 
 export default App
+
+/*
+eslint
+  react/no-adjacent-inline-elements: "off",
+*/
