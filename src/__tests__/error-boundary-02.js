@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {render} from '@testing-library/react'
 import {reportError as mockReportError} from '../api'
 import {ErrorBoundary} from '../error-boundary'

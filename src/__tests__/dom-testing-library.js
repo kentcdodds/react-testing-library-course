@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import ReactDOM from 'react-dom'
 import {getQueriesForElement} from '@testing-library/dom'
 import {FavoriteNumber} from '../favorite-number'

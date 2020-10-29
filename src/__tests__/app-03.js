@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 // NOTE: in the videos I called this "user" but I think
 // it makes more sense to call it "userEvent"

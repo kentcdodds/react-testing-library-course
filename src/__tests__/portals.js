@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {render, within} from '@testing-library/react'
 import {Modal} from '../modal'
 

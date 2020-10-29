@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {Router, Link, navigate} from '@reach/router'
 import {submitForm} from './api'
 
