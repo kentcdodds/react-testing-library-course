@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import user from '@testing-library/user-event'
 import {render, screen} from '@testing-library/react'
 import {FavoriteNumber} from '../favorite-number'

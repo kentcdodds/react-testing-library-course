@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 
 function FavoriteNumber({min = 1, max = 9}) {
   const [number, setNumber] = React.useState(0)

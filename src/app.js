@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom'
 import {submitForm} from './api'
 

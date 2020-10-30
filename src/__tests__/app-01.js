@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import {render, screen, fireEvent} from '@testing-library/react'
 // NOTE: for this one we're not using userEvent because
 // I wanted to show you how userEvent can improve this test
