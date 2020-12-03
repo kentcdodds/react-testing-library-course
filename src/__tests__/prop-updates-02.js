@@ -9,5 +9,5 @@ test('entering an invalid value shows an error message', () => {
   user.type(input, '10')
   expect(screen.getByRole('alert')).toHaveTextContent(/the number is invalid/i)
   rerender(<FavoriteNumber max={10} />)
-  expect(screen.queryByRole('alert')).toBeNull()
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
 })
