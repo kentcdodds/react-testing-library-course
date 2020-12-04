@@ -16,14 +16,12 @@ function render(ui, {route = '/', ...renderOptions} = {}) {
     // is actually easier anyway.
     return <BrowserRouter>{children}</BrowserRouter>
   }
-  return {
-    ...rtlRender(ui, {
-      wrapper: Wrapper,
-      ...renderOptions,
-      // originally this exposed history, but that's really
-      // an implementation detail, so we don't recommend that anymore
-    }),
-  }
+  return rtlRender(ui, {
+    wrapper: Wrapper,
+    ...renderOptions,
+    // originally this exposed history, but that's really
+    // an implementation detail, so we don't recommend that anymore
+  })
 }
 
 test('main renders about and home and I can navigate to those pages', () => {
