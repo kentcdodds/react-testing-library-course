@@ -37,9 +37,8 @@ test('NEW USER EVENT: entering an invalid value shows an error mesasge', () => {
   //expect(screen.queryByRole(/alert/i)).not.toBeInTheDocument()
   expect(screen.getByRole('alert')).toHaveTextContent(/the number is invalid/i)
 
-  userEvent.clear(input)
   rerender(<FavoriteNumber max={10} />)
-  userEvent.type(input, '10')
+
   // to check if a element is not rendered
   expect(screen.queryByRole('alert')).not.toBeInTheDocument()
 })
