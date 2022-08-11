@@ -6,7 +6,8 @@ import {axe} from 'jest-axe'
 function Form() {
   return (
     <form>
-      <input placeholder="email" />
+      <label htmlFor='email' >Email</label>
+      <input id='email' placeholder="email" />
     </form>
   )
 }
