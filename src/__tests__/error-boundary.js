@@ -41,8 +41,6 @@ test('calls reportError and renders that if there was a problem', () => {
     </ErrorBoundary>,
   )
 
-  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
-
   rerender(
     <ErrorBoundary>
       <Bomb shouldTrow={true} />
@@ -58,7 +56,10 @@ test('calls reportError and renders that if there was a problem', () => {
   // are surpressed and nothing else
   expect(console.error).toHaveBeenCalledTimes(2)
   expect(screen.getByRole('alert')).toBeInTheDocument()
-
+  //
+  expect(screen.getByRole('alert').textContent).toMatchInlineSnapshot(
+    `"There was a problem."`,
+  )
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   // resets the counter for console.error && Report
   console.error.mockClear()
@@ -76,4 +77,9 @@ test('calls reportError and renders that if there was a problem', () => {
 
   expect(mockReportError).not.toHaveBeenCalled()
   expect(console.error).not.toHaveBeenCalled()
+
+  expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+  expect(
+    screen.queryByRole('button', {name: /try again/i}),
+  ).not.toBeInTheDocument()
 })
