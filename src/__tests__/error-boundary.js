@@ -34,18 +34,10 @@ function Bomb({shouldTrow}) {
 
 test('calls reportError and renders that if there was a problem', () => {
   mockReportError.mockResolvedValueOnce({success: true})
+  // replaces the wrapping of <Bomb/> with <ErrorBoundary></ErrorBoundary>
+  const {rerender} = render(<Bomb />, {wrapper: ErrorBoundary})
 
-  const {rerender} = render(
-    <ErrorBoundary>
-      <Bomb />
-    </ErrorBoundary>,
-  )
-
-  rerender(
-    <ErrorBoundary>
-      <Bomb shouldTrow={true} />
-    </ErrorBoundary>,
-  )
+  rerender(<Bomb shouldTrow={true} />)
   //to check out what really is error and info
   const error = expect.any(Error)
   //this is complicated
@@ -65,11 +57,7 @@ test('calls reportError and renders that if there was a problem', () => {
   console.error.mockClear()
   mockReportError.mockClear()
 
-  rerender(
-    <ErrorBoundary>
-      <Bomb />
-    </ErrorBoundary>,
-  )
+  rerender(<Bomb />)
 
   const btn = screen.getByRole('button', {name: /try again/i})
   expect(btn).toBeInTheDocument()
