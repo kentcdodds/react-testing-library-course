@@ -16,14 +16,17 @@ const myMessage = 'Hello'
 // eslint-disable-next-line no-import-assign
 //moduleTransition.CSSTransition = jest.fn().mockImplementation((props) => (props.in ? props.children : null))
 //shorthand
-moduleTransition.CSSTransition = jest.fn(props => (props.in ? props.children : null))
+// eslint-disable-next-line no-import-assign
+moduleTransition.CSSTransition = jest.fn((props) =>
+  props.in ? props.children : null,
+)
 // Version 2 with spyOn
 /* jest
   .spyOn(moduleTransition, 'CSSTransition')
   .mockImplementation((props) => (props.in ? props.children : null))
  */
 // Version 3 mock the entire module, capture the original code and imports from the module
-// and reset those, while mocking the one which has been wanted 
+// and reset those, while mocking the one which has been wanted
 /* jest.mock('react-transition-group', () => {
   //if jest.mock is used, jest.requireAcutal is needed to make to other functions work
   const module = jest.requireActual('react-transition-group')
@@ -65,7 +68,7 @@ test('Mocked Module CSSTransition: check if hidden-message shows up when clicked
   expect(screen.queryByText(myMessage)).not.toBeInTheDocument()
   const btn = screen.getByRole('button', {name: /toggle/i})
   userEvent.click(btn)
-  expect()
+
   expect(screen.getByText(myMessage)).toBeInTheDocument()
   userEvent.click(btn)
   expect(screen.queryByText(myMessage)).not.toBeInTheDocument()
