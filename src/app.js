@@ -93,7 +93,7 @@ function Confirm({history}) {
         history.push('/success')
       },
       (error) => {
-        history.push('/error', {state: {error}})
+        history.push('/error', {error})
       },
     )
   }
