@@ -1,19 +1,11 @@
 import React, {useState} from 'react'
+import {Redirect} from 'react-router'
 import {savePost} from './api'
 
 export function Editor({user}) {
   const [disable, setDisable] = useState(false)
-  /*   const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [tags, setTags] = useState('')
-  const [message, setMessage] = useState({})
- 
-  useEffect(() => {
-    const msg = { title, content, tags: tags.split(',') }
-    setMessage(msg)
-  },[title, content, tags])
+  const [redirect, setRedirect] = useState(false)
 
- */
   function handleSubmit(e) {
     e.preventDefault()
     setDisable(true)
@@ -27,7 +19,11 @@ export function Editor({user}) {
       title: title.value,
       content: content.value,
       tags: tags.value.split(',').map((el) => el.trim()),
-    })
+    }).then(() => setRedirect(true))
+  }
+
+  if (redirect) {
+    return <Redirect to="/" />
   }
 
   return (
