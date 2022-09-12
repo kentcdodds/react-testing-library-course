@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line testing-library/prefer-wait-for
-import {screen, render, waitFor} from '@testing-library/react'
+import {screen, render, wait} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {GreetingLoader} from '../greeting-loader-01-mocking'
 import {loadGreeting as mockLoadGreeting} from '../api'
@@ -24,5 +24,5 @@ test('if the components greets corretly when request is submittes', async () => 
   expect(mockLoadGreeting).toHaveBeenCalledTimes(1)
   // if this is not wrapped, then there will be an ACT warning
   // eslint-disable-next-line testing-library/prefer-wait-for
-  await waitFor(() => expect(greeting).toHaveTextContent(MY_GREETING))
+  await wait(() => expect(greeting).toHaveTextContent(MY_GREETING))
 })

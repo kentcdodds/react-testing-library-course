@@ -2,12 +2,11 @@
 
 /* eslint-disable testing-library/prefer-wait-for */
 import React from 'react'
-import {render, screen, waitFor} from '@testing-library/react'
-// eslint-disable-next-line import/no-unresolved
-import {HiddenMessage} from 'hidden-message'
+import {render, screen, wait} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import * as moduleTransition from 'react-transition-group'
 
+import {HiddenMessage} from '../hidden-message'
 const myMessage = 'Hello'
 
 // - - - - - - - - - - - - - - - - - - - - - -
@@ -17,7 +16,7 @@ const myMessage = 'Hello'
 //moduleTransition.CSSTransition = jest.fn().mockImplementation((props) => (props.in ? props.children : null))
 //shorthand
 // eslint-disable-next-line no-import-assign
-moduleTransition.CSSTransition = jest.fn((props) =>
+moduleTransition.CSSTransition = jest.fn(props =>
   props.in ? props.children : null,
 )
 // Version 2 with spyOn
@@ -56,7 +55,7 @@ test('ASYNC checks if hidden-message shows up when clicked on the button', async
   userEvent.click(btn)
   expect(screen.getByText(myMessage)).toBeInTheDocument()
   userEvent.click(btn)
-  await waitFor(() =>
+  await wait(() =>
     expect(screen.queryByText(myMessage)).not.toBeInTheDocument(),
   )
   //expect(screen.queryByText(myMessage)).not.toBeInTheDocument()

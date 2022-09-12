@@ -2,7 +2,7 @@
 /* eslint-disable testing-library/prefer-wait-for */
 import React from 'react'
 import {Redirect as MockRedirect} from 'react-router'
-import {render, screen, waitFor} from '@testing-library/react'
+import {render, screen, wait} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import {Editor} from '../post-editor-001-markup'
 import {savePost as mocksavePost} from '../api'
@@ -54,6 +54,6 @@ test('renders a form with title, content, tags, and a submit button', async () =
   expect(dateMock).toBeGreaterThanOrEqual(preDate)
   expect(dateMock).toBeLessThanOrEqual(postDate)
 
-  await waitFor(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
-  await waitFor(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
+  await wait(() => expect(MockRedirect).toHaveBeenCalledTimes(1))
+  await wait(() => expect(MockRedirect).toHaveBeenCalledWith({to: '/'}, {}))
 })

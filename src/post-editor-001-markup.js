@@ -10,6 +10,7 @@ export function Editor({user}) {
   function handleSubmit(e) {
     e.preventDefault()
     setDisable(true)
+
     // searches for the name prop of the form
     const {title, content, tags} = e.target.elements
     // const title = e.target.elements.titleInput.value
@@ -19,12 +20,12 @@ export function Editor({user}) {
       authorId: user.id,
       title: title.value,
       content: content.value,
-      tags: tags.value.split(',').map((el) => el.trim()),
+      tags: tags.value.split(',').map(el => el.trim()),
       date: new Date().toISOString(),
     }
     savePost(newPost)
       .then(() => setRedirect(true))
-      .catch((err) => {
+      .catch(err => {
         // console.error(err)
         setDisable(false)
         setError(err.data.error)
