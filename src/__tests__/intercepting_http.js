@@ -1,6 +1,6 @@
 import React from 'react'
 // eslint-disable-next-line testing-library/prefer-wait-for
-import {screen, render, wait} from '@testing-library/react'
+import {screen, render, waitFor} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 //polyfill to the fetch api to run in an node env
@@ -35,5 +35,7 @@ test('if the components greets corretly when request is submittes', async () => 
   // important to check that the mock is properly working
   // if this is not wrapped, then there will be an ACT warning
   // eslint-disable-next-line testing-library/prefer-wait-for
-  await wait(() => expect(greeting).toHaveTextContent(`Hello ${MY_GREETING}`))
+  await waitFor(() =>
+    expect(greeting).toHaveTextContent(`Hello ${MY_GREETING}`),
+  )
 })

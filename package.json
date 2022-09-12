@@ -5,6 +5,8 @@
   "description": "Course material for testing React components using react-testing-library",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server .",
+    "build": "Webpack .",
     "test": "kcd-scripts test",
     "lint": "kcd-scripts lint",
     "validate": "kcd-scripts validate",

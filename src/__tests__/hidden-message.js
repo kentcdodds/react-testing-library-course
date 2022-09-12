@@ -2,7 +2,7 @@
 
 /* eslint-disable testing-library/prefer-wait-for */
 import React from 'react'
-import {render, screen, wait} from '@testing-library/react'
+import {render, screen, waitFor} from '@testing-library/react'
 // eslint-disable-next-line import/no-unresolved
 import {HiddenMessage} from 'hidden-message'
 import userEvent from '@testing-library/user-event'
@@ -56,7 +56,7 @@ test('ASYNC checks if hidden-message shows up when clicked on the button', async
   userEvent.click(btn)
   expect(screen.getByText(myMessage)).toBeInTheDocument()
   userEvent.click(btn)
-  await wait(() =>
+  await waitFor(() =>
     expect(screen.queryByText(myMessage)).not.toBeInTheDocument(),
   )
   //expect(screen.queryByText(myMessage)).not.toBeInTheDocument()
