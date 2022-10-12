@@ -23,7 +23,7 @@ function useMultiPageForm() {
   const context = React.useContext(MultiPageForm)
   if (!context) {
     throw new Error(
-      'useMultiPageForm must be used within a MiltiPageFormProvider',
+      'useMultiPageForm must be used within a MultiPageFormProvider',
     )
   }
   return context
